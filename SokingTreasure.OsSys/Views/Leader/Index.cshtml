@@ -158,6 +158,7 @@
             }
     </style>
 </head>
+
 <body class="layui-layout-body" style="overflow:auto; ">
     <div class="modal fade" id="form-login" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -239,6 +240,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+    <!---->
     @*<div id="upload">
             <div>
                 <img src="~/images/upload2.gif" />
@@ -265,32 +267,23 @@
             </ul>
         </div>
         <!-- soking搜索部分 -->
-        <section id="search" style="padding:100px 0 100px;background-color: #ccc;">
+        <section id="search" style="padding:100px 0 100px; background-color:cornflowerblue;">
             <div class="intro">
                 <div class="">
                     <div class="container" style="width: 100%;max-width: 1250px;">
                         <div class="col-md-12">
                             <h1 id="V3_index_search_h1" class="text-center panel-heading m-b-lg text-white">
-                                查企业，就上搜客宝！
+                                搜老板，就上搜客宝！
                             </h1>
                             <div class="col-md-10 col-md-offset-1" style="padding:50px 0px 0px; margin:0 auto;">
-                                <div class="search-nav hidden-xs">
-                                    <ul class="V3_index_search_item form-group form-group-sm">
-                                        <li class="search-type float-left col-sm-1" data-index="0">全部</li>
-                                        <li class="col-sm-4"> </li>
-                                        <li class="search-type active float-left col-sm-1" data-index="2">企业名</li>
-                                        <li class="col-sm-4"> </li>
-                                        <li class="search-type float-left col-sm-4" data-index="4">法人/股东 </li>
-                                    </ul>
-                                </div>
                                 <div class="clearfix">
                                 </div>
                                 <form action="/search" id="V3_Index_S" style="padding-right: 60px;">
                                     <div class="input-group">
-                                        <input type="text" style="height:50px;" value="" id="searchkey" autocomplete="off" placeholder="请输入企业名称、法人/股东，如“谷程科技”" name="key" class="form-control input-lg" required="required" onkeydown="searchKeydown(event,1);">
+                                        <input type="text" style="height:50px;" value="" id="searchkey" autocomplete="off" placeholder="请输入责任法人、股东或高管姓名，如“王健林”" name="key" class="form-control input-lg" required="required" onkeydown="searchKeydown(event,1);">
                                         <input type="hidden" id="index" name="index" value="2">
                                         <span class="btn-group">
-                                            <input onclick="zhugeTrack('主页-搜索-查一下',{'搜索条件':$('.V3_index_search_item .active').text()});" id="V3_Search_bt" type="submit" class="btn btn-default btn-lg" style="width:100px;" value="查一下" required="required">
+                                            <input onclick="zhugeTrack('主页-搜索-查一下',{'搜索条件':$('.V3_index_search_item .active').text()});" id="V3_Search_bt" type="submit" class="btn btn-default btn-lg" style="width:100px;" value="搜一下" required="required">
                                         </span>
                                     </div>
                                 </form>
@@ -300,15 +293,14 @@
                                 <div class="row">
                                     <div class="col-md-10 col-md-offset-1" style="width: 850px;">
                                         <p class="index-hot form-group form-group-sm">
-                                            <span id="hot_data_label" class="col-sm-1">热搜榜：</span>
-                                            <span id="hot_data">
-                                                <a onclick="zhugeTrack('主页-热搜',{'关键词':'瓜子二手车'});" class="index-hot-company" href="/firm_CN_010d26f1bf8d5a941d6e0e7368e2225b.html" target="_blank">瓜子二手车</a>
-                                                <a onclick="zhugeTrack('主页-热搜',{'关键词':'拼多多下架'});" class="index-hot-company" href="/firm_CN_d025c9ad53fa25c0cc703c9d3d294b36.html" target="_blank">拼多多下架</a>
-                                                <a onclick="zhugeTrack('主页-热搜',{'关键词':'李甜'});" class="index-hot-company" href="/firm_CN_9681b8a0411c165c0105d5c3c2d77921.html" target="_blank">李甜</a>
-                                                <a onclick="zhugeTrack('主页-热搜',{'关键词':'京东美妆'});" class="index-hot-company" href="/firm_CN_c0fa0f946164132bad214a7ce62ac608.html" target="_blank">京东美妆</a>
-                                                <a onclick="zhugeTrack('主页-热搜',{'关键词':'阿里巴巴'});" class="index-hot-company" href="/firm_CN_8c9f7ddc1a7bcee3d1f7676773fe9404.html" target="_blank">阿里巴巴</a>
+                                            <span id="hot_data_label" class="col-sm-1" style="color:white;">热搜名人：</span>
+                                            <span id="hot_data" style="padding-left:10px;">
+                                                <a onclick="zhugeTrack('主页-热搜',{'关键词':'马化腾'});" class="index-hot-company" href="/firm_CN_010d26f1bf8d5a941d6e0e7368e2225b.html" target="_blank">马化腾 |</a>
+                                                <a onclick="zhugeTrack('主页-热搜',{'关键词':'马云'});" class="index-hot-company" href="/firm_CN_d025c9ad53fa25c0cc703c9d3d294b36.html" target="_blank">马云 |</a>
+                                                <a onclick="zhugeTrack('主页-热搜',{'关键词':'李彦宏'});" class="index-hot-company" href="/firm_CN_9681b8a0411c165c0105d5c3c2d77921.html" target="_blank">李彦宏 |</a>
+                                                <a onclick="zhugeTrack('主页-热搜',{'关键词':'丁磊'});" class="index-hot-company" href="/firm_CN_c0fa0f946164132bad214a7ce62ac608.html" target="_blank">丁磊 |</a>
+                                                <a onclick="zhugeTrack('主页-热搜',{'关键词':'王思聪'});" class="index-hot-company" href="/firm_CN_8c9f7ddc1a7bcee3d1f7676773fe9404.html" target="_blank">王思聪</a>
                                             </span>
-                                            <a class="topsearch-link" onclick="" href="/cms_topsearch">查看更多 &gt; </a>
                                         </p>
                                     </div>
                                 </div>
@@ -337,22 +329,22 @@
                     </a>
                 </div>
             </div>
-            @*<div class="layui-carousel" id="soking-slideshow" style="height:500px;">
-                    <div carousel-item>
-                        <div>
-                            <img src="~/images/1.png" alt="Alternate Text" />
-                        </div>
-                        <div>
-                            <img src="~/images/2.png" alt="Alternate Text" />
-                        </div>
-                        <div>
-                            <img src="~/images/3.png" alt="Alternate Text" />
-                        </div>
-                        <div>
-                            <img src="~/images/4.png" alt="Alternate Text" />
-                        </div>
+            <div class="layui-carousel" id="soking-slideshow" style="width:1200px; height:900px;">
+                <div carousel-item>
+                    <div>
+                        <img src="~/images/img04.jpg" alt="Alternate Text" />
                     </div>
-                </div>*@
+                    <div>
+                        <img src="~/images/img05.jpg" alt="Alternate Text" />
+                    </div>
+                    <div>
+                        <img src="~/images/img07.jpg" alt="Alternate Text" />
+                    </div>
+                    <div>
+                        <img src="~/images/img08.jpg" alt="Alternate Text" />
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- soking尾部 -->
         <div class="panel-footer" style="margin-top:50px;">
@@ -399,65 +391,61 @@
         })
     </script>
     <script>
-         var data=[
-             {img:1,h2:'测试一',h3:'测试一'},
-             {img:4,h2:'测试二',h3:'测试二'},
-             {img:3,h2:'测试三',h3:'测试三'},
-             {img:4,h2:'测试四',h3:'测试四'},
-             {img:1,h2:'测试五',h3:'测试五'},
-         ]
-         var g=function(id){
-         	if(id.substr(0,1)=='.')
-         	{
-         		return document.getElementsByClassName(id.substr(1));
-         	}
-         	return document.getElementById(id);
-         }
-         function addEntiretys(){
-         	var tpl_main=g('template_main').innerHTML.replace(/^\s*/,'').replace(/\s*$/,'');
-         	var tpl_ctrl=g('template_ctrl').innerHTML.replace(/^\s*/,'').replace(/\s*$/,'');
-         	var out_main=[];
-         	var out_ctrl=[];
-         	console.log(tpl_main)
-         	for(i in data)
-         	{
-         		var _html_main=tpl_main.replace(/{{index}}/g,data[i].img).replace(/{{h2}}/g,data[i].h2).replace(/{{h3}}/g,data[i].h3);
-         		var _html_ctrl=tpl_ctrl.replace(/{{index}}/g,data[i].img);
+        var data = [
+            { img: 1, h2: '测试一', h3: '测试一' },
+            { img: 4, h2: '测试二', h3: '测试二' },
+            { img: 3, h2: '测试三', h3: '测试三' },
+            { img: 4, h2: '测试四', h3: '测试四' },
+            { img: 1, h2: '测试五', h3: '测试五' },
+        ]
+        var g = function (id) {
+            if (id.substr(0, 1) == '.') {
+                return document.getElementsByClassName(id.substr(1));
+            }
+            return document.getElementById(id);
+        }
+        function addEntiretys() {
+            var tpl_main = g('template_main').innerHTML.replace(/^\s*/, '').replace(/\s*$/, '');
+            var tpl_ctrl = g('template_ctrl').innerHTML.replace(/^\s*/, '').replace(/\s*$/, '');
+            var out_main = [];
+            var out_ctrl = [];
+            console.log(tpl_main)
+            for (i in data) {
+                var _html_main = tpl_main.replace(/{{index}}/g, data[i].img).replace(/{{h2}}/g, data[i].h2).replace(/{{h3}}/g, data[i].h3);
+                var _html_ctrl = tpl_ctrl.replace(/{{index}}/g, data[i].img);
 
-         		out_main.push(_html_main);
-         		out_ctrl.push(_html_ctrl);
-         	}
-         	    g('template_main').innerHTML=out_main.join('');
-         	    g('template_ctrl').innerHTML=out_ctrl.join('');
-         }
-          function switchEntirety(n){
-         	var main=g('main_'+n);
-         	var ctrl=g('ctrl_'+n);
-         	var clear_main=g('.main-i');
-         	var clear_ctrl=g('.ctrl-i');
-         	for(i=0;i<clear_main.length;i++)
-         	{
-         		clear_main[i].className=clear_main[i].className.replace('main-i-different','');
-         		clear_ctrl[i].className=clear_ctrl[i].className.replace('ctrl-i-different','');
-         	}
-         	main.className+=' main-i-different';
-         	ctrl.className+=' ctrl-i-different';
-         }
-         function movePic(){
-         	var pics=g('.pic');
-         	for(i=0;i<pics.length;i++)
-         	{
-         		pics[i].style.marginTop=(-1*pics[i].clientHeight/2)+'px'
-         	}
+                out_main.push(_html_main);
+                out_ctrl.push(_html_ctrl);
+            }
+            g('template_main').innerHTML = out_main.join('');
+            g('template_ctrl').innerHTML = out_ctrl.join('');
+        }
+        function switchEntirety(n) {
+            var main = g('main_' + n);
+            var ctrl = g('ctrl_' + n);
+            var clear_main = g('.main-i');
+            var clear_ctrl = g('.ctrl-i');
+            for (i = 0; i < clear_main.length; i++) {
+                clear_main[i].className = clear_main[i].className.replace('main-i-different', '');
+                clear_ctrl[i].className = clear_ctrl[i].className.replace('ctrl-i-different', '');
+            }
+            main.className += ' main-i-different';
+            ctrl.className += ' ctrl-i-different';
+        }
+        function movePic() {
+            var pics = g('.pic');
+            for (i = 0; i < pics.length; i++) {
+                pics[i].style.marginTop = (-1 * pics[i].clientHeight / 2) + 'px'
+            }
 
-         }
-         window.onload=function(){
-         		addEntiretys();
-         		switchEntirety(2);
-         		setTimeout(function(){
-         			movePic();
-         		},100)
-         	}
+        }
+        window.onload = function () {
+            addEntiretys();
+            switchEntirety(2);
+            setTimeout(function () {
+                movePic();
+            }, 100)
+        }
     </script>
 </body>
 </html>

@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace SokingTreasure.OsSys.Controllers
 {
-    public class HomeController : Controller
+    public class LeaderController : Controller
     {
-        // GET: Home
-        public ActionResult Login()
+        // GET: Leader
+        public ActionResult Index()
         {
             return View();
         }
