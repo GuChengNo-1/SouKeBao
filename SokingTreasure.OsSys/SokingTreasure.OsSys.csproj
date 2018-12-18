@@ -194,8 +194,6 @@
     <Content Include="images\img11.jpg" />
     <Content Include="images\upload2.gif" />
     <Content Include="Js\ace-extra.min.js" />
-    <Content Include="Js\html5shiv.min.js" />
-    <Content Include="Js\respond.min.js" />
     <Content Include="layui\css\layui.css" />
     <Content Include="layui\css\layui.mobile.css" />
     <Content Include="layui\css\modules\code.css" />
