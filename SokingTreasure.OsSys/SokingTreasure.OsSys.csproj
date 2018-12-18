@@ -172,8 +172,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\sokingHome.css" />
     <Content Include="Css\ace-fonts.css" />
-    <Content Include="Css\ace-ie.min.css" />
-    <Content Include="Css\ace-part2.min.css" />
     <Content Include="Css\ace.min.css" />
     <Content Include="Css\bootstrap.min.css" />
     <Content Include="Css\font-awesome.min.css" />
@@ -194,6 +192,8 @@
     <Content Include="images\img11.jpg" />
     <Content Include="images\upload2.gif" />
     <Content Include="Js\ace-extra.min.js" />
+    <Content Include="Js\jquery.min.js" />
+    <Content Include="Js\jquery.mobile.custom.min.js" />
     <Content Include="layui\css\layui.css" />
     <Content Include="layui\css\layui.mobile.css" />
     <Content Include="layui\css\modules\code.css" />
