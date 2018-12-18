@@ -52,5 +52,20 @@ namespace SokingTreasure.OsSys.DAL
             }
             return ul;
         }
+
+        public static bool InsertUser(UserLogin model)
+        {
+            string sql = $"insert into UserLogin values('@LoginName','@LoginPwd','@LoginEmail',1)";
+            SqlParameter[] param = {
+                 new SqlParameter("@LoginName",model.LoginName),
+                 new SqlParameter("@LoginPwd",model.LoginPwd),
+                 new SqlParameter("@LoginEmail",model.LoginEmail)
+             };
+            if (DbHelper.ExecuteNonQuery(sql, false, param) >= 1)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

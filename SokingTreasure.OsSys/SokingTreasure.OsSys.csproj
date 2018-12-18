@@ -344,12 +344,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Leader\Index.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\User\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -368,6 +368,10 @@
     <ProjectReference Include="..\SokingTreasure.OsSys.BLL\SokingTreasure.OsSys.BLL.csproj">
       <Project>{1ae0b277-c9d5-4b75-885c-385c6345897b}</Project>
       <Name>SokingTreasure.OsSys.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SokingTreasure.OsSys.Common\SokingTreasure.OsSys.Common.csproj">
+      <Project>{22f3167b-22a8-4df1-948a-800f69e1a9af}</Project>
+      <Name>SokingTreasure.OsSys.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\SokingTreasure.OsSys.Models\SokingTreasure.OsSys.Models.csproj">
       <Project>{86f560f7-f08d-43e4-bd62-c9e5054462e9}</Project>

@@ -22,9 +22,24 @@ namespace SokingTreasure.OsSys.BLL
         {
             return UserCRUD.CheckUser(user);
         }
+        
+        /// <summary>
+        /// 条件查询用户（用户名和用户密码）
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public static UserLogin GetWhereByUser(UserLogin user)
         {
             return UserCRUD.GetWhereByUser(user);
+        }
+        /// <summary>
+        /// 添加用户
+        /// </summary>
+        /// <param name="User">新用户信息</param>
+        /// <returns></returns>
+        public static bool InsertUser(UserLogin model)
+        {
+            return UserCRUD.InsertUser(model);
         }
     }
 }
