@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SokingTreasure.OsSys.DAL", "SokingTreasure.OsSys.DAL\SokingTreasure.OsSys.DAL.csproj", "{D3B84101-DDCE-4D86-83A9-95D3A88CE99F}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SokingTreasure.OsSys", "SokingTreasure.OsSys\SokingTreasure.OsSys.csproj", "{E784CBCB-0A5F-4E2F-A3E3-251A4336577B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SokingTreasure.OsSys.Models", "SokingTreasure.OsSys.Models\SokingTreasure.OsSys.Models.csproj", "{86F560F7-F08D-43E4-BD62-C9E5054462E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SokingTreasure.OsSys.Common", "SokingTreasure.OsSys.Common\SokingTreasure.OsSys.Common.csproj", "{DB7A4B57-6801-4B95-A4C9-193381C7843C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{86F560F7-F08D-43E4-BD62-C9E5054462E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86F560F7-F08D-43E4-BD62-C9E5054462E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86F560F7-F08D-43E4-BD62-C9E5054462E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB7A4B57-6801-4B95-A4C9-193381C7843C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB7A4B57-6801-4B95-A4C9-193381C7843C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB7A4B57-6801-4B95-A4C9-193381C7843C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB7A4B57-6801-4B95-A4C9-193381C7843C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
