@@ -41,5 +41,10 @@ namespace SokingTreasure.OsSys.BLL
         {
             return UserCRUD.InsertUser(model);
         }
+
+        public static bool VerifyUser(UserLogin model)
+        {
+            return UserCRUD.VerifyUser(model);
+        }
     }
 }

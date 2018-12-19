@@ -24,6 +24,10 @@ namespace SokingTreasure.OsSys.Models
         /// </summary>
         public string LoginEmail { get; set; }
         /// <summary>
+        /// 用户手机号码
+        /// </summary>
+        public string LoginPhone { get; set; }
+        /// <summary>
         /// 状态编号(用户状态表）
         /// </summary>
         public int StateId { get; set; }

@@ -53,15 +53,30 @@ namespace SokingTreasure.OsSys.DAL
             return ul;
         }
 
-        public static bool InsertUser(UserLogin model)
+        public static bool VerifyUser(UserLogin model)
         {
-            string sql = $"insert into UserLogin values('@LoginName','@LoginPwd','@LoginEmail',1)";
+            string sql = $"select * from UserLogin where LoginName=@LoginName and LoginPhone=@LoginPhone and LoginEmail=@LoginEmail";
             SqlParameter[] param = {
                  new SqlParameter("@LoginName",model.LoginName),
-                 new SqlParameter("@LoginPwd",model.LoginPwd),
+                 new SqlParameter("@LoginPhone",model.LoginPhone),
                  new SqlParameter("@LoginEmail",model.LoginEmail)
              };
-            if (DbHelper.ExecuteNonQuery(sql, false, param) >= 1)
+            SqlDataReader reader = DbHelper.ExectueReader(sql, false, param);
+            while (reader.Read())
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 添加用户
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static bool InsertUser(UserLogin model)
+        {
+            string sql = $"insert into UserLogin values('{model.LoginName}','{model.LoginPwd}','{model.LoginEmail}','{model.LoginPhone}',1)";
+            if (DbHelper.ExecuteNonQuery(sql, false) >= 1)
             {
                 return true;
             }
