@@ -14,16 +14,11 @@
     <meta name="description" content="Restyling jQuery UI Widgets and Elements" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <!-- basic styles -->
-
     <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/assets/css/font-awesome.min.css" />
-
     <link rel="stylesheet" href="~/assets/css/fullcalendar.css" />
-
     <!-- fonts -->
-
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
-
     <!-- ace styles -->
     <link rel="stylesheet" href="~/assets/css/ace.min.css" />
     <link rel="stylesheet" href="~/assets/css/ace-rtl.min.css" />
@@ -45,7 +40,7 @@
 
             <div class="navbar-header pull-left">
                 <!-- #section:basics/navbar.layout.brand -->
-                <a href="index.html" class="navbar-brand">
+                <a href="/Home/HomePage" class="navbar-brand">
                     <small>
                         Logo
                     </small>
@@ -57,15 +52,14 @@
                 <ul class="nav ace-nav">
 
                     <li class="green">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="/Home/Inbox">
+                            <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>                           
                         </a>
 
                         <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
                             <li class="dropdown-footer">
-                                <a href="inbox.html">
-                                    暂无消息
+                                <a href="/Home/Inbox">
+                                    查看全部消息
                                     <i class="ace-icon fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -95,14 +89,13 @@
                             <li class="divider"></li>
 
                             <li>
-                                <a href="#">
+                                <a href="/User/Login">
                                     <i class="ace-icon fa fa-power-off"></i>
                                     登出
                                 </a>
                             </li>
                         </ul>
                     </li>
-
                     <!-- /section:basics/navbar.user_menu -->
                 </ul>
             </div>
@@ -118,7 +111,7 @@
         <div id="sidebar" class="sidebar responsive">
             <ul class="nav nav-list">
                 <li class="active">
-                    <a href="index.html">
+                    <a href="/Home/HomePage">
                         <i class="menu-icon fa fa-tachometer"></i>
                         <span class="menu-text"> 首页面 </span>
                     </a>
@@ -139,36 +132,9 @@
                     <ul class="submenu">
 
                         <li class="">
-                            <a href="typography.html">
+                            <a href="/Home/Presscenter">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                排版
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="elements.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                UI元素
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="buttons.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                按钮 &amp; 图标
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="treeview.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                树状结构
+                                行业快讯
                             </a>
 
                             <b class="arrow"></b>
@@ -181,67 +147,6 @@
                             </a>
 
                             <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="nestable-list.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                可拖拽列表
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="#" class="dropdown-toggle">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                三级菜单
-                                <b class="arrow fa fa-angle-down"></b>
-                            </a>
-
-                            <b class="arrow"></b>
-
-                            <ul class="submenu">
-                                <li class="">
-                                    <a href="#">
-                                        <i class="menu-icon fa fa-leaf green"></i>
-                                        第一级
-                                    </a>
-
-                                    <b class="arrow"></b>
-                                </li>
-
-                                <li class="">
-                                    <a href="#" class="dropdown-toggle">
-                                        <i class="menu-icon fa fa-pencil orange"></i>
-
-                                        第四级
-                                        <b class="arrow fa fa-angle-down"></b>
-                                    </a>
-
-                                    <b class="arrow"></b>
-
-                                    <ul class="submenu">
-                                        <li class="">
-                                            <a href="#">
-                                                <i class="menu-icon fa fa-plus purple"></i>
-                                                添加商品
-                                            </a>
-
-                                            <b class="arrow"></b>
-                                        </li>
-
-                                        <li class="">
-                                            <a href="javascript:void(0)">
-                                                <i class="menu-icon fa fa-eye pink"></i>
-                                                查看商品
-                                            </a>
-
-                                            <b class="arrow"></b>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                 </li>
@@ -289,27 +194,9 @@
 
                     <ul class="submenu">
                         <li class="">
-                            <a href="form-elements.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                表单组件
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="form-wizard.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                向导提示 &amp; 验证
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
                             <a href="wysiwyg.html">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                编辑器
+                                文本编辑
                             </a>
 
                             <b class="arrow"></b>
@@ -329,7 +216,6 @@
                 <li class="active open">
                     <a href="/Home/Calendar">
                         <i class="menu-icon fa fa-calendar"></i>
-
                         <span class="menu-text">
                             日历
                         </span>
@@ -353,24 +239,6 @@
                             <a href="profile.html">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 用户信息
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="inbox.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                邮箱
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="timeline.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                时间轴
                             </a>
 
                             <b class="arrow"></b>
@@ -404,43 +272,7 @@
                         <li class="">
                             <a href="faq.html">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                帮助页面
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="error-404.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                404错误页面
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="error-500.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                500错误页面
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="grid.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                网格
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
-                            <a href="blank.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                空白页面
+                                帮助中心
                             </a>
 
                             <b class="arrow"></b>
@@ -462,7 +294,7 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="index.html">首页面</a>
+                        <a href="/Home/HomePage">首页面</a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">日历</a>
@@ -488,7 +320,7 @@
                         <h1>日历</h1>
                         <div class="col-xs-12">
                             <div class="row">
-                                <div class="col-sm-9">
+                                <div class="col-sm-6">
                                     <div class="space"></div>
 
                                     <div id="calendar" class="fc fc-ltr">
@@ -527,35 +359,36 @@
 
                                         <div class="fc-content" style="position: relative;">
                                             <div class="fc-view fc-view-month fc-grid" style="position:relative" unselectable="on">
-                                                <div class="fc-event-container" style="position:absolute;z-index:8;top:0;left:0">
-                                                    <div class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end label-important" style="position: absolute; left: 675px; width: 108px; top: 42px;">
+
+                                                @*<div class="fc-event-container" style="position:absolute;z-index:8;top:0;left:0">
+                                                    @*<div class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end label-important" style="position: absolute; left: 675px; width: 108px; top: 42px;">
                                                         <div class="fc-event-inner">
                                                             <span class="fc-event-title">All Day Event</span>
                                                         </div>
-                                                        <div class="ui-resizable-handle ui-resizable-e">&nbsp;&nbsp;&nbsp;</div>
-                                                    </div>
+                                                        <div class="ui-resizable-handle ui-resizable-e">&nbsp;</div>
+                                                    </div>*@
 
-                                                    <div class="fc-event fc-event-hori fc-event-draggable fc-event-start label-success" style="position: absolute; left: 675px; width: 110px; top: 227px;">
+                                                    @*<div class="fc-event fc-event-hori fc-event-draggable fc-event-start label-success" style="position: absolute; left: 675px; width: 110px; top: 227px;">
                                                         <div class="fc-event-inner">
                                                             <span class="fc-event-title">Long Event</span>
                                                         </div>
-                                                    </div>
+                                                    </div>*@
 
-                                                    <div class="fc-event fc-event-hori fc-event-draggable fc-event-end label-success" style="position: absolute; left: 1px; width: 333px; top: 319px;">
+                                                    @*<div class="fc-event fc-event-hori fc-event-draggable fc-event-end label-success" style="position: absolute; left: 1px; width: 333px; top: 319px;">
                                                         <div class="fc-event-inner">
                                                             <span class="fc-event-title">Long Event</span>
                                                         </div>
-                                                        <div class="ui-resizable-handle ui-resizable-e">&nbsp;&nbsp;&nbsp;</div>
-                                                    </div>
+                                                        <div class="ui-resizable-handle ui-resizable-e">&nbsp;</div>
+                                                    </div>*@
 
-                                                    <div class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end ui-draggable" style="position: absolute; left: 115px; width: 107px; top: 340px;" unselectable="on">
+                                                    @*<div class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end ui-draggable" style="position: absolute; left: 115px; width: 107px; top: 340px;" unselectable="on">
                                                         <div class="fc-event-inner">
                                                             <span class="fc-event-time">4p</span>
                                                             <span class="fc-event-title">Some Event</span>
                                                         </div>
-                                                        <div class="ui-resizable-handle ui-resizable-e">&nbsp;&nbsp;&nbsp;</div>
+                                                        <div class="ui-resizable-handle ui-resizable-e">&nbsp;</div>
                                                     </div>
-                                                </div>
+                                                </div>*@
                                             
                                                 <div class="fc-cell-overlay" style="position: absolute; z-index: 3; top: 21px; left: 112px; width: 112px; height: 92px; display: none;"></div>
                                                     <table class="fc-border-separate" style="width:100%" cellspacing="0">
@@ -944,10 +777,6 @@
 
 
 
-
-
-
-
                                     </div>
                                 </div>
 
@@ -1041,7 +870,6 @@
     <script src="~/assets/js/jquery.ui.touch-punch.min.js"></script>
     <script src="~/assets/js/fullcalendar.min.js"></script>
     <script src="~/assets/js/bootbox.min.js"></script>
-
     <script src="~/assets/js/ace-elements.min.js"></script>
     <script src="~/assets/js/ace.min.js"></script>
 
@@ -1152,7 +980,6 @@
                             );
                         }
                     });
-
 
                     calendar.fullCalendar('unselect');
 

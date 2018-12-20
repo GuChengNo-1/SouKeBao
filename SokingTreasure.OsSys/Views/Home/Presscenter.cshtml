@@ -1,0 +1,520 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "搜客宝-工商信息查询-公司企业注册信息查询-全国企业信用信息公示系统";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="This is page-header (.page-header &gt; h1)" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/assets/css/ace.min.css" id="main-ace-style" />
+    <link rel="stylesheet" href="~/assets/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="~/assets/css/ace-rtl.min.css" />
+</head>
+<body class="no-skin">
+    <!-- #section:basics/navbar.layout -->
+    <div id="navbar" class="navbar navbar-default">
+        <div class="navbar-container" id="navbar-container">
+            <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-header pull-left">
+                <!-- #section:basics/navbar.layout.brand -->
+                <a href="/Home/HomePage" class="navbar-brand">
+                    <small>
+                        Logo
+                    </small>
+                </a>
+            </div>
+
+            <div class="navbar-buttons navbar-header pull-right" role="navigation">
+                <ul class="nav ace-nav">
+
+                    <li class="green">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
+                        </a>
+
+                        <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                            <li class="dropdown-content">
+                                <ul class="dropdown-menu dropdown-navbar">
+                                    <li>
+                                        <a href="#">
+                                            <img src="assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+                                            <span class="msg-body">
+
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown-footer">
+                                <a href="/Home/Inbox">
+                                    查看全部消息
+                                    <i class="ace-icon fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- #section:basics/navbar.user_menu -->
+                    <li class="light-blue">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                            <img class="nav-user-photo" src="~/assets/avatars/profile-pic.jpg" alt="Jason's Photo" />
+                            <span class="user-info">
+                                搜客宝<br />
+                                欢迎您!
+                            </span>
+
+                            <i class="ace-icon fa fa-caret-down"></i>
+                        </a>
+
+                        <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                            <li>
+                                <a href="">
+                                    <i class="ace-icon fa fa-user"></i>
+                                    个人信息设置
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="/User/Login">
+                                    <i class="ace-icon fa fa-power-off"></i>
+                                    登出
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- /section:basics/navbar.user_menu -->
+                </ul>
+            </div>
+
+            <!-- /section:basics/navbar.dropdown -->
+        </div><!-- /.navbar-container -->
+    </div>
+
+    <!-- /section:basics/navbar.layout -->
+    <div class="main-container" id="main-container">
+
+        <div id="sidebar" class="sidebar responsive">
+            <ul class="nav nav-list">
+                <li class="active">
+                    <a href="/Home/HomePage">
+                        <i class="menu-icon fa fa-tachometer"></i>
+                        <span class="menu-text"> 首页面 </span>
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="/Home/Presscenter" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 新闻中心 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+
+                        <li class="active">
+                            <a href="/Home/Presscenter">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                行业快讯
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-list"></i>
+                        <span class="menu-text"> 表格 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="tables.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                简单通用表格
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="jqgrid.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                jqGrid插件表格
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-pencil-square-o"></i>
+                        <span class="menu-text"> 表单 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="wysiwyg.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                文本编辑
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="dropzone.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                文件上传
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="/Home/Calendar">
+                        <i class="menu-icon fa fa-calendar"></i>
+                        <span class="menu-text">
+                            日历
+                        </span>
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-tag"></i>
+                        <span class="menu-text"> 更多 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="profile.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                用户信息
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="timeline.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                时间轴
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="login.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                登录注册
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-file-o"></i>
+
+                        <span class="menu-text">
+                            其他
+                        </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="faq.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                帮助中心
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+            </ul><!-- /.nav-list -->
+            <!-- #section:basics/sidebar.layout.minimize -->
+            <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+            </div>
+        </div>
+
+        <div class="main-content">
+
+            <div class="breadcrumbs" id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                        <a href="/Home/HomePage">首页面</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">新闻中心</a>
+                    </li>
+                    <li>
+                        <a href="/Home/Presscenter">行业快讯</a>
+                    </li>
+                </ul><!-- /.breadcrumb -->
+                <!-- #section:basics/content.searchbox -->
+                <div class="nav-search" id="nav-search">
+                    <form class="form-search">
+                        <span class="input-icon">
+                            <input type="text" placeholder="请输入关键字 ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                            <i class="ace-icon fa fa-search nav-search-icon"></i>
+                        </span>
+                    </form>
+                </div><!-- /.nav-search -->
+                <!-- /section:basics/content.searchbox -->
+            </div>
+
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+
+                <div class="page-content-area">
+                    <div class="page-header">
+                        <h1>
+                            三星关厂、苹果禁售：中国手机市场大变局信号！
+                            <small>
+                                <i class="ace-icon fa fa-angle-double-right"></i>
+                                来源：投资界
+                            </small>
+                        </h1>
+                    </div><!-- /.page-header -->
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- PAGE CONTENT BEGINS -->
+                            <div class="row">
+                                <div class="col-sm-12">   
+                                    <p style="font-size:16px; line-height:28px;">
+                                        在新一轮的生死谜局面前，手机厂商们都枕戈以待，届时中国手机市场头部格局是将重新洗牌还是得以巩固，只能交给时间来给出答案。<br />
+
+
+                                        IDC报告显示，2018年Q3，华为、vivo、OPPO、小米已经占据中国智能手机市场超80%的份额，大幅领先外资劲敌苹果，三星直接跌出前五。可以看出，国产手机品牌日渐成为中国消费者的首选，外资品牌在中国手机市场头部竞争中已经逐渐“掉队”。<br/>
+
+
+                                        手机市场总是易攻难守、各领风骚三五年的状态。随着国产品牌的迅速崛起，中国手机市场头部格局已经彻底洗牌。<br />
+
+
+                                        国际数据公司（IDC）最新发布的手机季度跟踪报告显示，2018年第三季度，中国智能手机市场出货量约1.03亿台；国产品牌华为、vivo、OPPO、小米出货量分列前四位，大幅领先外资劲敌苹果；全球智能手机出货量霸主三星则直接跌出前五，折戟中国市场。<br />
+
+
+                                        从市场份额来看，2018年第三季度，四大国产品牌（华为、vivo、OPPO、小米）已经占据中国智能手机市场超80%的份额，较去年同期上升了约12个百分点，处于绝对优势地位。<br />
+
+
+                                        从畅销机型来看，根据第一手机界研究院的数据，2018年7月中国畅销手机Top10排行榜中，外资手机（iPhone X）仅占据一席之地，且位列第十，前九名均被国产品牌收入囊中。<br />
+
+
+                                        可以看出，国产手机品牌日渐成为中国消费者的首选，外资品牌在中国手机市场头部竞争中已经逐渐“掉队”。<br />
+                                    </p>
+
+                                        <h2>在华份额“跌跌不休” 三星关闭天津工厂</h2>
+
+                                    <p style="font-size:16px; line-height:28px;">
+                                        作为全球智能手机霸主，三星全球出货量一直处于领先位置，但在中国市场，如今可以用“雪崩”来形容其表现。<br />
+
+
+                                        IDC数据显示，2013年三星全年出货量占据中国市场份额高达18.7%，此后就开始了下跌之路；2016年的市场份额为5.5%；受Note 7“炸机”事件影响，2017年市场份额下降至3%；2018年前三季度已经跌至0.9%，第三季度的出货量仅为70万台，不及苹果的十分之一。<br />
+
+
+                                        三星在中国的市场份额从0%到近20%耗费近10年，但跌至0.9%只花了约5年。这个曾经中国手机市场的领头羊，在经历“炸机”事件后，已经溃不成军。<br />
+
+
+                                        受此影响，三星也开始调整中国市场的业务布局。12月13日，三星在一份声明中表示：“作为提高生产设施效率的持续努力的一部分，三星电子已经做出了停止天津三星电子通信业务的艰难决定。”<br />
+
+
+                                        目前，三星已通知其天津工厂的员工。该工厂目前拥有约2600名员工，预计将于今年年底关闭。三星表示，它将向员工提供补偿方案，并提供转移到其他三星工厂的机会。<br />
+
+
+                                        虽然近年来手机业务在中国市场颓势明显，但关闭天津工厂的举动并不意味着三星将放弃中国市场。<br />
+
+
+                                        在声明中，三星还表示，将继续运营广东省惠州的手机厂，并称“中国仍然是三星的重要市场”。<br />
+
+
+                                        三星电子大中华区总裁权桂贤近日也在北京Galaxy A8s发布上高调宣布重返中国市场，“在全球竞争最激烈的市场中，三星已做足准备，无所畏惧地面对接下来的挑战，三星将通过一系列举措证明，三星已经强势归来”。<br />
+
+
+                                        只是发生“炸机”事件后，三星在国内市场的形象已经严重受损，其在安抚消费者与复苏国内品牌形象方面动作又较为迟缓，如今想要重获中国消费者信任、挽回市场恐怕要下大工夫了。<br />
+                                    </p>
+
+                                        <h2>分析师发出预警 部分iPhone遭禁售</h2>
+
+                                    <p style="font-size:16px; line-height:28px;">
+                                        不仅是三星，外资手机巨头苹果也在中国市场遭遇了同样的打击。<br />
+
+
+                                        市场研究机构Counterpoint Research的数据显示，2017年第四季度，苹果在国内市场的市场份额为15%，到了2018年第三季度就下滑到了9%。<br />
+
+
+                                        甚至还有分析师对iPhone发出预警。11月初，研究机构Longbow Research的分析师Shawn Harrison就指出，“iPhone已经开始出现一些风险苗头，iPhone订单同比增速减弱，百度的iPhone搜索趋势也亮起了红灯，在10月份直线下滑，显示出中国需求萎缩的潜在风险。”<br />
+
+
+                                        但苹果方面的说辞则是，尽管iPhone表现疲软，但“所有设备平均售价的持续提高，在服务、Watch和AirPods上持续强劲的表现，以及积极的资本回报，仍将推动2019财年的每股盈余增长”。<br />
+
+
+                                        实际上，这番靓丽说辞的背后，苹果的销量确实在下滑。也许是感受了市场饱和的阵阵寒意，苹果公司还决定不再单独提供iPhone、iPad、和Mac的单位销售数据。<br />
+
+
+                                        近日，与高通在华的专利纠纷更让外界担心苹果手机业绩。<br />
+
+
+                                        12月10日，高通宣布，福州中院授予了高通针对苹果公司四家中国子公司提出的两个诉中临时禁令，要求他们立即停止针对高通两项专利的、包括在中国进口、销售和许诺销售未经授权的产品的侵权行为。<br />
+
+
+                                        相关产品包括iPhone 6S、iPhone 6S Plus、iPhone 7、iPhone 7 Plus、iPhone 8、iPhone 8 Plus和iPhone X。所涉的两项专利之前已经被中华人民共和国国家知识产权局认定为有效。<br />
+
+
+                                        据第一财经报道，虽然苹果三个子公司拒绝签收法院裁定书，导致裁定书退回；但高通已经向中国法院提交了强制执行（禁售）申请。<br />
+
+
+                                        除此之外，高通还在中国提出新的诉讼，要求禁止苹果公司在华销售最新的iPhone XS和XR。<br />
+
+
+                                        不过，苹果很快做出了相应调整，并于今日（12月14日）表示，将向中国iPhone用户推送软件更新，以解决内地法院因公司与高通专利诉讼裁决所带来的影响。<br />
+                                    </p>
+
+                                        <h2>4G战役将落幕 5G战事已开启</h2>
+
+                                    <p style="font-size:16px; line-height:28px;">
+                                        就在各大品牌还在4G时代激烈争抢时，智能手机市场的5G战争已然拉开了帷幕。尽管5G网络商用化尚未开始，但几乎所有的手机厂商都试图在5G时代寻找增量。<br />
+
+
+                                        作为目前国内智能手机的龙头老大，华为不免成为外界注意的焦点。在华为Mate 20伦敦发布会期间，华为消费者业务CEO余承东表示，“华为正在研发可折叠手机”，随后他又补充道，“是5G的可折叠手机”。据悉，华为首款安卓可折叠5G手机将于2019年中期推出。<br />
+
+
+                                        vivo人工智能全球研究院院长周围则在上述峰会上称，vivo计划于2019年完成全球首批NSA和SA 5G手机的研发和批量生产，推出第一款5G预商用手机，并将在2020年真正实现5G智慧手机商用。<br />
+
+
+                                        小米方面也在今年9月透过官方认证微博表示，已成功打通5G信令和数据链路连接，为明年正式推出5G手机打下了坚实基础。<br />
+
+
+                                        当然，这场5G大战自然不能缺了外资品牌的身影。三星此前就已宣布，将于明年上半年在美国发布其首款5G智能机。苹果一贯不追赶通信技术的升级，更多是在技术成熟后跟进。<br />
+
+
+                                        在新一轮的生死谜局面前，手机厂商们都枕戈以待，届时中国手机市场头部格局是将重新洗牌还是得以巩固，只能交给时间来给出答案。
+                                    </p>
+
+                                </div><!-- /.col -->
+
+                                <div class="col-sm-12">
+                                    <div class="widget-box">
+                                        <div class="widget-header widget-header-flat">
+                                            <h4 class="widget-title">更多讯息</h4>
+                                        </div>
+
+                                        <div class="widget-body">
+                                            <div class="widget-main">
+                                                <div class="row">
+
+                                                    <div class="col-sm-12">
+                                                        <ol>
+                                                            <li class="text-primary">又一日企巨头陨落！员工缩减，港资接盘(2018-12-17)</li>
+                                                            
+                                                            <li class="text-danger">回款是第一要务 深圳万科以价换量加速推盘(2018-12-12)</li>
+
+                                                            <li class="text-success">乐视网遭德邦证券体奥动力讨债：现金流紧张引发大量债务违约(2018-12-19)</li>
+                                                            
+                                                            <li class="text-warning">直播行业寒冬将至？(2018-12-10)</li>
+
+                                                            <li class="text-muted">勒索病毒”卷土重来，这次不要比特币，而是盯上了微信支付！(2018-12-12)</li>
+                                                        </ol>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- /.col -->
+                            </div>
+                        </div><!-- /.page-content-area -->
+                    </div><!-- /.page-content -->
+                </div><!-- /.main-content -->
+
+                <div class="footer">
+                    <div class="footer-inner">
+                        <!-- #section:basics/footer -->
+                        <div class="footer-content">
+                            <span class="bigger-120">
+                                上海谷程网络科技有限公司 &copy; 2019
+                            </span>
+                        </div>
+
+                        <!-- /section:basics/footer -->
+                    </div>
+                </div>
+
+                <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                    <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+                </a>
+            </div><!-- /.main-container -->
+            <!--[if !IE]> -->
+            <script type="text/javascript">
+				window.jQuery || document.write("<script src='~/assets/js/jquery.min.js'>"+"<"+"/script>");
+            </script>
+            <!-- <![endif]-->
+            <script type="text/javascript">
+			        if('ontouchstart' in document.documentElement) document.write("<script src='~/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+            </script>
+            <script src="~/assets/js/bootstrap.min.js"></script>
+            <script src="~/assets/js/jquery-ui.custom.min.js"></script>
+            <script src="~/assets/js/jquery.ui.touch-punch.min.js"></script>
+            <script src="~/assets/js/ace-elements.min.js"></script>
+            <script src="~/assets/js/ace.min.js"></script>
+        </div>
+
+    </div>
+</body>
+</html>

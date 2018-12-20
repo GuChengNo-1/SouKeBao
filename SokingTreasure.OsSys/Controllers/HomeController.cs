@@ -21,6 +21,15 @@ namespace SokingTreasure.OsSys.Controllers
         }
 
         /// <summary>
+        /// 新闻中心
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Presscenter()
+        {
+            return View();
+        }
+
+        /// <summary>
         /// 收件箱
         /// </summary>
         /// <returns></returns>
@@ -34,6 +43,15 @@ namespace SokingTreasure.OsSys.Controllers
         /// </summary>
         /// <returns></returns>
         public ActionResult Calendar()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 文本编辑
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Textedit()
         {
             return View();
         }
