@@ -15,11 +15,11 @@ namespace SokingTreasure.OsSys.Controllers
     /// </summary>
     public class UserController : Controller
     {
+        private static int UserId;
         // GET: User
         [HttpGet]
         public ActionResult Login()
         {
-            Request.Cookies.Remove("LogiName");
             if (Request.Cookies["LoginName"] != null)
             {
                 ViewData["LoginName"] = Request.Cookies["LoginName"].Value.ToString();
@@ -43,16 +43,16 @@ namespace SokingTreasure.OsSys.Controllers
                 {
                     //给用户设置票证
                     FormsAuthentication.SetAuthCookie(model.LoginName.ToString(), false);
-                    return RedirectToAction("HomePage", "Home");
+                    return Json(new { success = 1});
                 }
                 else
                 {
-                    return Json(new { success = true });
+                    return Json(new { success = 2 });
                 }
             }
             else
             {
-                return Json(new { success = false });
+                return Json(new { success = 3 });
             }
         }
         /// <summary>
@@ -69,22 +69,18 @@ namespace SokingTreasure.OsSys.Controllers
                 //判断用户是否存在
                 if (UserManage.CheckUser(model))
                 {
+                    if (Request.Cookies.AllKeys.Contains("LoginName"))
+                    {
+                        var cookietest = Request.Cookies["LoginName"];
+                        cookietest.Expires = DateTime.Now.AddDays(-3);
+                        Response.Cookies.Add(cookietest);
+                    }
                     HttpCookie cookie = new HttpCookie("LoginName", model.LoginName);
                     cookie.Expires = DateTime.Now.AddDays(3);
                     Request.Cookies.Add(cookie);
-                    //将用户保存到cookie
-                    //HttpCookie cookie = Request.Cookies.Get(model.LoginName);
-                    //if (cookie == null)
-                    //{
-                    //    //创建Cookie
-                    //    cookie = new HttpCookie("LoginName",model.LoginName);
-                    //    cookie.Expires = DateTime.Now.AddDays(3);
-                    //    //写入Cookie
-                    //    Response.Cookies.Set(cookie);
-                    //}
                     //给用户设置票证
                     FormsAuthentication.SetAuthCookie(model.LoginName.ToString(), false);
-                    return RedirectToAction("HomePage", "Home");
+                    return RedirectToRoute("HomePage", "Home");
                 }
                 else
                 {
@@ -110,29 +106,46 @@ namespace SokingTreasure.OsSys.Controllers
             //判断验证码是否正确
             if (LoginCode.ToLower() == Session["code"].ToString().ToLower())
             {
+
                 //判断密码和确认密码是否一致
                 if (userPwd == userPwd2)
                 {
-                    //添加用户
-                    if (UserManage.InsertUser(model))
+                    //判断用户名是否已存在
+                    if (UserManage.UserIfExist(model.LoginName))
                     {
-                        return RedirectToAction("HomePage", "Home");
+                        return Json(new { success = 1 });
                     }
                     else
                     {
-                        return Json(new { success = 1 });
+                        //添加用户
+                        if (UserManage.InsertUser(model))
+                        {
+                            return RedirectToAction("Login", "User");
+                        }
+                        else
+                        {
+                            return Json(new { success = 2 });
+                        }
                     }
                 }
                 else
                 {
-                    return Json(new { success = 2 });
+                    return Json(new { success = 3 });
                 }
             }
             else
             {
-                return Json(new { success = 3 });
+                return Json(new { success = 4 });
             }
         }
+        /// <summary>
+        /// 验证用户注册信息
+        /// </summary>
+        /// <param name="verifyEmail"></param>
+        /// <param name="verifyPhone"></param>
+        /// <param name="verifyName"></param>
+        /// <param name="loginCode"></param>
+        /// <returns></returns>
         public ActionResult VerifyUser(string verifyEmail, string verifyPhone, string verifyName, string loginCode)
         {
             UserLogin model = new UserLogin()
@@ -144,10 +157,11 @@ namespace SokingTreasure.OsSys.Controllers
             //判断验证码是否正确
             if (loginCode.ToLower() == Session["code"].ToString().ToLower())
             {
-                //判断用户信息是否正确
-                if (UserManage.VerifyUser(model))
+                //判断用户信息是否正确(id不为0则查询到数量>=1)
+                if (UserManage.VerifyUser(model).Id != 0)
                 {
-                    return Json(new { success = 1 });
+                    UserId = UserManage.VerifyUser(model).Id;
+                    return Json(new { success = 1, userId = UserId });
                 }
                 else
                 {
@@ -159,7 +173,41 @@ namespace SokingTreasure.OsSys.Controllers
                 return Json(new { success = 3 });
             }
         }
-
+        [HttpGet]
+        public ActionResult UserResetPwd(string id)
+        {
+            return View();
+        }
+        /// <summary>
+        /// 用户重置密码
+        /// </summary>
+        /// <param name="loginPwd">新密码</param>
+        /// <param name="loginPwd2">确认密码</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult UserResetPwd(string loginPwd, string confirmPwd)
+        {
+            string secrecyPwd = DataEncrypt.MD5Encrypt(loginPwd.Trim());
+            string secrecyPwd2 = DataEncrypt.MD5Encrypt(confirmPwd.Trim());
+            //新密码是否和确认密码一致
+            if (secrecyPwd == secrecyPwd2)
+            {
+                //重置密码
+                if (UserManage.AlterUserPwd(UserId, secrecyPwd))
+                {
+                    return Json(new { success = 1 });
+                    //return RedirectToAction("HomePage", "Home");
+                }
+                else
+                {
+                    return Json(new { success = 2 });
+                }
+            }
+            else
+            {
+                return Json(new { success = 3 });
+            }
+        }
         /// <summary>
         /// 验证码
         /// </summary>

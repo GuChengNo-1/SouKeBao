@@ -41,10 +41,33 @@ namespace SokingTreasure.OsSys.BLL
         {
             return UserCRUD.InsertUser(model);
         }
-
-        public static bool VerifyUser(UserLogin model)
+        /// <summary>
+        /// 验证用户信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static UserLogin VerifyUser(UserLogin model)
         {
             return UserCRUD.VerifyUser(model);
+        }
+        /// <summary>
+        /// 重置用户密码
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="secrecyPwd"></param>
+        /// <returns></returns>
+        public static bool AlterUserPwd(int userId, string secrecyPwd)
+        {
+            return UserCRUD.AlterUserPwd(userId, secrecyPwd);
+        }
+        /// <summary>
+        /// 用户名是否已存在
+        /// </summary>
+        /// <param name="loginName"></param>
+        /// <returns></returns>
+        public static bool UserIfExist(string loginName)
+        {
+            return UserCRUD.UserIfExist(loginName);
         }
     }
 }
