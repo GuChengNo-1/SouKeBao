@@ -494,10 +494,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\sokingHome.css" />
-    <Content Include="Css\ace-fonts.css" />
-    <Content Include="Css\ace.min.css" />
-    <Content Include="Css\bootstrap.min.css" />
-    <Content Include="Css\font-awesome.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -514,10 +510,6 @@
     <Content Include="images\img10.jpg" />
     <Content Include="images\img11.jpg" />
     <Content Include="images\upload2.gif" />
-    <Content Include="Js\ace-elements.min.js" />
-    <Content Include="Js\ace-extra.min.js" />
-    <Content Include="Js\jquery.min.js" />
-    <Content Include="Js\jquery.mobile.custom.min.js" />
     <Content Include="layui\css\layui.css" />
     <Content Include="layui\css\layui.mobile.css" />
     <Content Include="layui\css\modules\code.css" />
@@ -847,6 +839,8 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Home\HomePage.cshtml" />
     <Content Include="Views\User\UserResetPwd.cshtml" />
+    <Content Include="Views\Home\Inbox.cshtml" />
+    <Content Include="Views\Home\Calendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
