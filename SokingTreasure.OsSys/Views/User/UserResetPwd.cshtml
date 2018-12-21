@@ -82,6 +82,7 @@
         $(function () {
             layui.use('layer', function () {
                 var layer = layui.layer;
+                var regexPwd = /^[a-zA-Z]\w{5,18}$/;
                 $("#form-btn-confirm").click(function () {
                     var fromsecrecy = { loginPwd: $("#reset-pwd").val(), confirmPwd: $("#reset-confirmPwd").val() };
                     if ($("#reset-pwd").val() == "") {
@@ -90,6 +91,10 @@
                     }
                     if ($("#reset-confirmPwd").val() == "") {
                         layer.msg("请输入确认密码", { icon: 7, time: 2000, shade: 0.4 });
+                        return;
+                    }
+                    if (!regexPwd.test($("#reset-pwd").val())) {
+                        layer.msg("请输入以字母开头6-18位,允许字母数字下划线组合密码", { icon: 7, time: 2000, shade: 0.4 });
                         return;
                     }
                     $.ajax({

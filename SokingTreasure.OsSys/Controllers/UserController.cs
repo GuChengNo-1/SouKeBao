@@ -80,16 +80,16 @@ namespace SokingTreasure.OsSys.Controllers
                     Request.Cookies.Add(cookie);
                     //给用户设置票证
                     FormsAuthentication.SetAuthCookie(model.LoginName.ToString(), false);
-                    return RedirectToRoute("HomePage", "Home");
+                    return Json(new { success = 1 });
                 }
                 else
                 {
-                    return Json(new { success = true });
+                    return Json(new { success = 2 });
                 }
             }
             else
             {
-                return Json(new { success = false });
+                return Json(new { success = 3 });
             }
         }
         /// <summary>
@@ -120,22 +120,22 @@ namespace SokingTreasure.OsSys.Controllers
                         //添加用户
                         if (UserManage.InsertUser(model))
                         {
-                            return RedirectToAction("Login", "User");
+                            return Json(new { success = 2 });
                         }
                         else
                         {
-                            return Json(new { success = 2 });
+                            return Json(new { success = 3 });
                         }
                     }
                 }
                 else
                 {
-                    return Json(new { success = 3 });
+                    return Json(new { success = 4 });
                 }
             }
             else
             {
-                return Json(new { success = 4 });
+                return Json(new { success = 5 });
             }
         }
         /// <summary>

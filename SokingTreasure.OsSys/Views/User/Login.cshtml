@@ -34,10 +34,10 @@
     <script src="~/layui/layui.js"></script>
     <script src="~/bootstrap/js/bootstrap.min.js"></script>
 </head>
-<body class="login-layout" style="background-color: #394557;">
+<body class="login-layout" style="background-color: #394557;position:relative;">
     <div class="main-container">
         <div class="main-container">
-            <div class="row">
+            <div class="row" style="margin-top:10%;position:absolute;right: 20%;">
                 <div class="col-sm-10 col-sm-offset-1">
                     <div class="login-container">
                         <div class="center">
@@ -51,7 +51,7 @@
                         <div class="position-relative">
                             <div id="login-box" class="login-box visible widget-box no-border">
                                 <div class="widget-body">
-                                    <div class="widget-main">
+                                    <div class="widget-main widget-main-common">
                                         <h4 class="header blue lighter bigger">
                                             <i class="ace-icon fa fa-coffee green"></i>
                                             用户登录
@@ -223,8 +223,8 @@
                     $(".form-protocol").css({
                         "display": "block"
                     });
-                    $(".widget-main>h4").html("");
-                    $(".widget-main>h4").append("<i class='ace-icon fa fa-users blue'></i>新用户注册");
+                    $(".widget-main-common>h4").html("");
+                    $(".widget-main-common>h4").append("<i class='ace-icon fa fa-users blue'></i>新用户注册");
                     $("#form-btn-login").html("");
                     $("#form-btn-login").append("<span class='bigger-110'>注册</span>")
                     $("#form-btn-login").append("<i class='ace-icon fa fa-arrow-right icon-on-right'></i>");
@@ -252,8 +252,8 @@
                     $(".form-protocol").css({
                         "display": "none"
                     });
-                    $(".widget-main>h4").html("");
-                    $(".widget-main>h4").append("<i class='ace-icon fa fa-coffee green'></i>用户登录");
+                    $(".widget-main-common>h4").html("");
+                    $(".widget-main-common>h4").append("<i class='ace-icon fa fa-coffee green'></i>用户登录");
                     $("#form-btn-login").html("");
                     $("#form-btn-login").append("<i class='ace-icon fa fa-key'></i>");
                     $("#form-btn-login").append("<span class='bigger-110'>登录</span>")
@@ -283,7 +283,7 @@
                                 dataType: "json",
                                 success: function (data) {
                                     if (data.success == 1) {
-                                        document.location.href = "/Home/Index";
+                                        window.location.href = "/Home/HomePage";
                                     }
                                     else if (data.success == 2) {
                                         layer.msg("用户名或密码错误", { icon: 5, time: 2000, shade: 0.4 });
@@ -302,15 +302,21 @@
                                 data: formlogin,
                                 dataType: "json",
                                 success: function (data) {
-                                    if (data.success == true) {
+                                    if (data.success == 1) {
+                                        window.location.href = "/Home/HomePage";
+                                    }
+                                    else if (data.success == 2) {
                                         layer.msg("用户名或密码错误", { icon: 5, time: 2000, shade: 0.4 });
                                     }
-                                    else if (data.success == false) {
+                                    else if (data.success == 3) {
                                         layer.msg("验证码错误", { icon: 7, time: 2000, shade: 0.4 });
                                         $(".CodeImg").attr("src", "/User/GetCodeImg?id=" + Math.random());
                                     }
                                 }
                             })
+                        }
+                        else if ($("#LoginName").val() == "" && $("#LoginPwd").val() == "") {
+                            layer.msg("请输入用户名和密码", { icon: 7, time: 2000, shade: 0.4 });
                         }
                     } else if ($("#form-btn-login").attr("data-op") == "1") {//新用户注册
                         //验证用户输入的信息是否正确
@@ -330,6 +336,10 @@
                             layer.msg("请输入以字母开头6-18位,允许字母数字下划线组合密码", { icon: 7, time: 2000, shade: 0.4 });
                             return;
                         }
+                        if ($("#ConfirmPwd").val() == "") {
+                            layer.msg("请输入确认密码", { icon: 7, time: 2000, shade: 0.4 });
+                            return;
+                        }
                         if ($("input[type='checkbox']").is(':checked') == false) {
                             layer.msg("您还未阅读协议", { icon: 7, time: 2000, shade: 0.4 });
                             return;
@@ -341,20 +351,20 @@
                             dataType: "json",
                             success: function (data) {
                                 if (data.success == 1) {
-                                    layer.msg("该用户名已存在", { icon: 6, time: 2000, shade: 0.4 });
+                                    layer.msg("该用户名已存在", { icon: 5, time: 2000, shade: 0.4 });
                                 }
                                 else if (data.success == 2) {
-                                    layer.msg("注册失败", { icon: 5, time: 3000, shade: 0.4 });
+                                    layer.msg("注册成功,赶紧去登录吧", { icon: 6, time: 3000, shade: 0.4 });
                                 }
                                 else if (data.success == 3) {
-                                    layer.msg("密码和确认密码不一致", { icon: 7, time: 2000, shade: 0.4 });
+                                    layer.msg("注册失败", { icon: 5, time: 3000, shade: 0.4 });
                                 }
                                 else if (data.success == 4) {
+                                    layer.msg("密码和确认密码不一致", { icon: 7, time: 2000, shade: 0.4 });
+                                }
+                                else if (data.success == 5) {
                                     layer.msg("验证码错误", { icon: 7, time: 2000, shade: 0.4 });
                                     $(".CodeImg").attr("src", "/User/GetCodeImg?id=" + Math.random());
-                                }
-                                else {
-                                    layer.msg("注册成功", { icon: 6, time: 3000, shade: 0.4 });
                                 }
                             }
                         })
