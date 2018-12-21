@@ -148,6 +148,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -843,6 +844,7 @@
     <Content Include="Views\Home\Calendar.cshtml" />
     <Content Include="Views\Home\Presscenter.cshtml" />
     <Content Include="Views\Home\Textedit.cshtml" />
+    <Content Include="Views\Company\CompanyInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

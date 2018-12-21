@@ -53,7 +53,7 @@
                             <li class="dropdown-header">
                                 <i class="ace-icon fa fa-envelope-o"></i>
                                 暂无消息
-                            </li>
+                            </li>                          
 
                             <li class="dropdown-footer">
                                 <a href="/Home/Inbox">
@@ -69,8 +69,8 @@
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                             <img class="nav-user-photo" src="~/assets/avatars/profile-pic.jpg" alt="Jason's Photo" />
                             <span class="user-info">
-                                欢迎您!<br />
-                                @HttpContext.Current.User.Identity.Name
+                                搜客宝<br />
+                                欢迎您!
                             </span>
 
                             <i class="ace-icon fa fa-caret-down"></i>
@@ -81,16 +81,16 @@
                             <li>
                                 <a href="">
                                     <i class="ace-icon fa fa-user"></i>
-                                    个人信息设置 
+                                    个人信息设置
                                 </a>
                             </li>
 
                             <li class="divider"></li>
 
                             <li>
-                                <a href="/Home/LogOff">
+                                <a href="/Home/Login">
                                     <i class="ace-icon fa fa-power-off"></i>
-                                    退出登录
+                                    登出
                                 </a>
                             </li>
                         </ul>
@@ -144,7 +144,7 @@
                 <li class="">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-list"></i>
-                        <span class="menu-text"> 表格 </span>
+                        <span class="menu-text"> 企业管理 </span>
 
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
@@ -153,18 +153,9 @@
 
                     <ul class="submenu">
                         <li class="">
-                            <a href="tables.html">
-                                <i class="menu-icon fa fa-caret-right"></i>
-                                简单通用表格
-                            </a>
-
-                            <b class="arrow"></b>
-                        </li>
-
-                        <li class="">
                             <a href="jqgrid.html">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                jqGrid插件表格
+                                企业信息
                             </a>
 
                             <b class="arrow"></b>
@@ -345,12 +336,12 @@
     <!-- basic scripts -->
     <!--[if !IE]> -->
     <script type="text/javascript">
-        window.jQuery || document.write("<script src='~/assets/js/jquery.min.js'>" + "<" + "/script>");
+        window.jQuery || document.write("<script src='~/assets/js/jquery.min.js'>"+"<"+"/script>");
     </script>
     <!-- <![endif]-->
     <script src="~/Scripts/jquery-3.2.1.js"></script>
     <script type="text/javascript">
-        if ('ontouchstart' in document.documentElement) document.write("<script src='~/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+			if('ontouchstart' in document.documentElement) document.write("<script src='~/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
     </script>
     <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/assets/js/ace-elements.min.js"></script>
