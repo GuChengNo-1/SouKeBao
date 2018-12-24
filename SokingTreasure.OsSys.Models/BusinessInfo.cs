@@ -36,10 +36,6 @@ namespace SokingTreasure.OsSys.Models
         /// </summary>
         public string Taxpayer { get; set; }
         /// <summary>
-        /// 公司类型
-        /// </summary>
-        public string CompanyType { get; set; }
-        /// <summary>
         /// 所属行业
         /// </summary>
         public string IndustryInvolved { get; set; }
