@@ -69,8 +69,8 @@
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                             <img class="nav-user-photo" src="~/assets/avatars/profile-pic.jpg" alt="Jason's Photo" />
                             <span class="user-info">
-                                搜客宝<br />
-                                欢迎您!
+                                欢迎您!<br />
+                                @HttpContext.Current.User.Identity.Name
                             </span>
 
                             <i class="ace-icon fa fa-caret-down"></i>
@@ -90,7 +90,7 @@
                             <li>
                                 <a href="/Home/Login">
                                     <i class="ace-icon fa fa-power-off"></i>
-                                    登出
+                                    退出登录
                                 </a>
                             </li>
                         </ul>
@@ -157,7 +157,20 @@
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 企业信息
                             </a>
-
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="/Trademark/TrademarkShow">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                商标信息
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="/Copyright/CopyrightWorksShow">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                作品信息
+                            </a>
                             <b class="arrow"></b>
                         </li>
                     </ul>

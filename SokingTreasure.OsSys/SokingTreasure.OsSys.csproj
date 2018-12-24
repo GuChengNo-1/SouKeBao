@@ -149,8 +149,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\CopyrightController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaderController.cs" />
+    <Compile Include="Controllers\TrademarkController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -846,6 +848,10 @@
     <Content Include="Views\Home\Presscenter.cshtml" />
     <Content Include="Views\Home\Textedit.cshtml" />
     <Content Include="Views\Company\CompanyInfo.cshtml" />
+    <Content Include="Views\Trademark\TrademarkShow.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Copyright\CopyrightWorksShow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
