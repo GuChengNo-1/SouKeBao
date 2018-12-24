@@ -12,94 +12,69 @@ namespace SokingTreasure.OsSys.Models
     public class CompanyInfo : EntityBase
     {
         /// <summary>
+        /// 企业编号
+        /// </summary>
+        public int CompanyId { get; set; }
+
+        /// <summary>
         /// 企业名称
         /// </summary>
-        private string CompanyName;
-
-        public string getCompanyName()
-        {
-            return CompanyName;
-        }
-
-        public void setCompanyName(string companyName)
-        {
-            this.CompanyName = companyName;
-        }
+        public string CompanyName { get; set; }
 
         /// <summary>
         /// 法定代表人
         /// </summary>
-        private string LegalRepresentative;
-
-        public string getLegalRepresentative()
-        {
-            return LegalRepresentative;
-        }
-
-        public void setLegalRepresentative(string legalRepresentative)
-        {
-            this.LegalRepresentative = legalRepresentative;
-        }
+        public string LegalRepresentative { get; set; }
 
         /// <summary>
         /// 企业电话
         /// </summary>
-        private string CompanyPhone;
-
-        public string getCompanyPhone()
-        {
-            return CompanyPhone;
-        }
-
-        public void setCompanyPhone(string companyPhone)
-        {
-            this.CompanyPhone = companyPhone;
-        }
+        public string CompanyPhone { get; set; }
 
         /// <summary>
         /// 企业邮箱
         /// </summary>
-        private string CompanyEmail;
-
-        public string getCompanyEmail()
-        {
-            return CompanyEmail;
-        }
-
-        public void setCompanyEmail(string companyEmail)
-        {
-            this.CompanyEmail = companyEmail;
-        }
+        public string CompanyEmail { get; set; }
 
         /// <summary>
         /// 企业网址
         /// </summary>
-        private string CompanyUrl;
+        public string CompanyUrl { get; set; }
 
-        public string getCompanyUrl()
-        {
-            return CompanyUrl;
-        }
+        /// <summary>
+        /// 企业简介
+        /// </summary>
+        public string CompanyProfile { get; set; }
 
-        public void setCompanyUrl(string companyUrl)
-        {
-            this.CompanyUrl = companyUrl;
-        }
+        /// <summary>
+        /// 企业类型
+        /// </summary>
+        public string CompanyType { get; set; }
 
         /// <summary>
         /// 工商信息
         /// </summary>
-        private int BusinessId;
+        public int BusinessId { get; set; }
 
-        public int getBusinessId()
-        {
-            return BusinessId;
-        }
+        /// <summary>
+        /// 股东信息
+        /// </summary>
+        public int ShareholderId { get; set; }
 
-        public void setBusinessId(int businessId)
-        {
-            this.BusinessId = businessId;
-        }
+        /// <summary>
+        /// 变更记录
+        /// </summary>
+        public int ChangeRecordId { get; set; }
 
+        /// <summary>
+        /// 商标信息
+        /// </summary>
+        public int TrademarkId { get; set; }
+
+        /// <summary>
+        /// 作品著作权
+        /// </summary>
+        public int CopyrightWorksId { get; set; }
     }
 }
+
