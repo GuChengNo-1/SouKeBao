@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="CompanyInfoManage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrademarkManage.cs" />
     <Compile Include="UserManage.cs" />
   </ItemGroup>
   <ItemGroup>
