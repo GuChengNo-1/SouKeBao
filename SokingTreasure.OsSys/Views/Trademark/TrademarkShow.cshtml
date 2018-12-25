@@ -91,7 +91,7 @@
                             <li class="divider"></li>
 
                             <li>
-                                <a href="/Home/Login">
+                                <a href="/Home/LogOff">
                                     <i class="ace-icon fa fa-power-off"></i>
                                     退出登录
                                 </a>
@@ -339,7 +339,7 @@
                                 <div class="col-xs-12">
 
                                     <div class="table-header">
-                                        作品管理
+                                        商标管理
                                     </div>
 
                                     <table width="100%" class="CSSearchTbl" cellpadding="0" cellspacing="0">
@@ -360,53 +360,6 @@
                                     </table>
                                     <div class="table-responsive">
                                         <table id="trademark-table" lay-filter="test" class="table table-striped table-bordered table-hover" data-toggle="table" data-url="data1.json">
-                                            @*<thead>
-                                                <tr>
-                                                    <th data-field="number">序号</th>
-                                                    <th data-field="CompanyName">企业名称</th>
-                                                    <th data-field="ApplyTime">申请日期</th>
-                                                    <th data-field="TrademarkName">商标</th>
-                                                    <th data-field="CommodityName">商标名称</th>
-                                                    <th data-field="Registration">注册号</th>
-                                                    <th data-field="Category">类别</th>
-                                                    <th data-field="ProcessState">流程状态</th>
-                                                </tr>
-                                            </thead>*@
-
-                                            @*<tbody>
-                                                <tr>
-                                                    <td>商务研发部</td>
-                                                    <td><a href="#" class="yuangongBtn" rel="#yuangong">CL1234567891234567</a></td>
-                                                    <td class="hidden-480">C1234567891234</td>
-                                                    <td class="hidden-480"><span class="label label-sm label-warning">广州北京0801</span></td>
-                                                    <td>未提交</td>
-                                                    <td>张国立</td>
-                                                    <td>2012-08-01</td>
-                                                    <td>
-                                                        <div class="hidden-sm hidden-xs btn-group">
-                                                            <button class="btn btn-xs btn-success" title="">
-                                                                <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                            </button>
-
-                                                            <button class="btn btn-xs btn-info">
-                                                                <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                            </button>
-
-                                                            <button class="btn btn-xs btn-danger">
-                                                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                            </button>
-
-                                                            <button class="btn btn-xs btn-warning">
-                                                                <i class="ace-icon fa fa-flag bigger-120"></i>
-                                                            </button>
-
-                                                            <button class="btn btn-xs btn-success">
-                                                                <i class="ace-icon fa fa-check bigger-120"></i>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>*@
                                         </table>
                                         <div id="layui-paging"></div>
                                         <div class="modal-footer no-margin-top">
@@ -578,53 +531,80 @@
     <script src="~/assets/js/jquery.ui.touch-punch.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
     <script>
-            //将时间戳转换为日期时间
-            function fmtDate(obj) {
-                var dateVal = obj + "";
-                if (obj != null) {
-                    var date = new Date(parseInt(dateVal.replace("/Date(", "").replace(")/", ""), 10));
-                    var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-                    var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-                    var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
-                    var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-                    var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
-                    return date.getFullYear() + "-" + month + "-" + currentDate;
-                    //+ " " + hours + ":" + minutes + ":" + seconds
-                }
+        //将时间戳转换为日期时间
+        function fmtDate(obj) {
+            var dateVal = obj + "";
+            if (obj != null) {
+                var date = new Date(parseInt(dateVal.replace("/Date(", "").replace(")/", ""), 10));
+                var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+                var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+                var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+                return date.getFullYear() + "-" + month + "-" + currentDate;
+                //+ " " + hours + ":" + minutes + ":" + seconds
             }
+        }
     </script>
     <script>
-            $(function () {
-                //导航栏
-                layui.use('element', function () {
-                    var element = layui.element;
-                });
-                //导航栏
-                var limitcount = 10;
-                var curnum = 1;
-                //加载table组件
-                function productsearch(start, limit) {
-                    layui.use(['table', 'laypage'], function () {
-                        var table = layui.table,
-                            laypage = layui.laypage;
-                        //第一个实例
-                        table.render({
-                            elem: '#trademark-table'
-                            , url: '/Trademark/TrademarkListShow?index=' + curnum + "&&limit=" + limitcount//数据接口
-                            , id: 'trademark'
-                            , defaultToolbar: ['filter', 'print', 'exports']
-                            , cols: [[ 
-                                { field: 'NumberId', title: '序号', width: 80, sort: true, fixed: 'left', unresize: true }
-                                , { field: 'CompanyName', title: '企业名称', width: 260, unresize: true }
-                                , { field: 'ApplyTime', title: '申请日期', width: 120, unresize: true, templet: '#titleTpl1' }
-                                , { field: 'TrademarkName', title: '商标', width: 80, unresize: true }
-                                , { field: 'CommodityName', title: '商标名称', width: 150, unresize: true }
-                                , { field: 'Registration', title: '注册号', width: 200 }
-                                , { field: 'Category', title: '类别', width: 200 }
-                                , { field: 'ProcessState', title: '流程状态', width: 240, unresize: true }
-                                , { field: 'Right', title: '操作', width: 120, toolbar: '#barDemo' }
-                            ]]
-                            , page: false
+        $(function () {
+            //导航栏
+            layui.use('element', function () {
+                var element = layui.element;
+            });
+            //导航栏
+            var limitcount = 10;
+            var curnum = 1;
+            //加载table组件
+            function productsearch(start, limit) {
+                layui.use(['table', 'laypage'], function () {
+                    var table = layui.table,
+                        laypage = layui.laypage;
+                    //第一个实例
+                    table.render({
+                        elem: '#trademark-table'
+                        , url: '/Trademark/TrademarkListShow?index=' + curnum + "&&limit=" + limitcount//数据接口
+                        , id: 'trademark'
+                        , defaultToolbar: ['filter', 'print', 'exports']
+                        , cols: [[
+                            { field: 'NumberId', title: '序号', width: 80, sort: true, fixed: 'left', unresize: true }
+                            , { field: 'CompanyName', title: '企业名称', width: 260, unresize: true, templet: '#titleTpl2'}
+                            , { field: 'ApplyTime', title: '申请日期', width: 120, unresize: true, templet: '#titleTpl1' }
+                            , { field: 'TrademarkName', title: '商标', width: 80, unresize: true, templet: '#titleTpl3' }
+                            , { field: 'CommodityName', title: '商标名称', width: 150, unresize: true }
+                            , { field: 'Registration', title: '注册号', width: 200 }
+                            , { field: 'Category', title: '类别', width: 240 }
+                            , { field: 'ProcessState', title: '流程状态', width: 240, unresize: true }
+                            , { field: 'Right', title: '操作', width: 120, toolbar: '#barDemo' }
+                        ]]
+                        , page: false
+                        , done: function (res) {
+                            laypage.render({
+                                elem: 'layui-paging',
+                                count: res.tatol,
+                                curr: curnum,
+                                limit: limitcount,
+                                layout: ['prev', 'page', 'next', 'skip', 'count', 'limit'],
+                                jump: function (obj, first) {
+                                    if (!first) {
+                                        curnum = obj.curr;
+                                        limitcount = obj.limit;
+                                        productsearch(curnum, limitcount);
+                                    }
+                                }
+                            });
+                        }
+                    });
+                    //查询客户
+                    $('#trademark-where-btn').click(function () {
+                        table.reload('trademark', {
+                            where: { //设定异步数据接口的额外参数，任意设
+                                companyName: $('#where-companyName').val(),
+                                applyTimeBegin: $('#where-applyTime-begin').val(),
+                                applyTimeOver: $('#where-applyTime-over').val(),
+                                commodityName: $('#where-commodityName').val(),
+                            },
+                            page: false
                             , done: function (res) {
                                 laypage.render({
                                     elem: 'layui-paging',
@@ -642,127 +622,73 @@
                                 });
                             }
                         });
-                        //查询客户
-                        $('#trademark-where-btn').click(function () {
-                            table.reload('trademark', {
-                                where: { //设定异步数据接口的额外参数，任意设
-                                    companyName: $('#where-companyName').val(),
-                                    applyTimeBegin: $('#where-applyTime-begin').val(), 
-                                    applyTimeOver: $('#where-applyTime-over').val(), 
-                                    commodityName: $('#where-commodityName').val(),
-                                },
-                                page: false
-                                , done: function (res) {
-                                    laypage.render({
-                                        elem: 'layui-paging',
-                                        count: res.tatol,
-                                        curr: curnum,
-                                        limit: limitcount,
-                                        layout: ['prev', 'page', 'next', 'skip', 'count', 'limit'],
-                                        jump: function (obj, first) {
-                                            if (!first) {
-                                                curnum = obj.curr;
-                                                limitcount = obj.limit;
-                                                productsearch(curnum, limitcount);
-                                            }
-                                        }
-                                    });
-                                }
-                            });
-                        })
-                        //添加用户页面
-                        layui.use('layer', function () {
-                            var layer = layui.layer;
-                            $('#addCustomer-btn').click(function () {
-                                layer.open({
-                                    type: 2,
-                                    title: '添加客户',
-                                    content: '/Customer/CustomerAddPage/',
-                                    area: ['700px', '450px']
-                                })
+                    })
+                    //添加用户页面
+                    layui.use('layer', function () {
+                        var layer = layui.layer;
+                        $('#addCustomer-btn').click(function () {
+                            layer.open({
+                                type: 2,
+                                title: '添加客户',
+                                content: '/Customer/CustomerAddPage/',
+                                area: ['700px', '450px']
                             })
                         })
-                        //监听工具条
-                        table.on('tool(test)', function (obj) {
-                            var data = obj.data;
-                            var layEvent = obj.event;
-                            var tr = obj.tr;
-                            if (layEvent == 'edit') {
-                                layer.open({
-                                    type: 2,
-                                    title: '编辑客户',
-                                    content: '/Customer/CustomerEditPage?Id=' + data.Id,
-                                    area: ['700px', '450px']
-                                })
-                            }
-                            if (layEvent == 'del') {
-                                layer.confirm('真的删除行么', function (index) {
-                                    obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-                                    layer.close(index);
-                                    //向服务端发送删除指令
-                                    layui.$.post(
-                                        '/Customer/DeleteCustomer?Id=' + data.Id,
-                                        { id: data.Id },
-                                        function (data, status) {
-                                            if (data.msg == 'ok') {
-                                                layer.msg('删除成功!');
-                                            }
-                                            //else {
-                                            //    layer.msg('出现未知错误!');
-                                            //}
+                    })
+                    //监听工具条
+                    table.on('tool(test)', function (obj) {
+                        var data = obj.data;
+                        var layEvent = obj.event;
+                        var tr = obj.tr;
+                        if (layEvent == 'edit') {
+                            layer.open({
+                                type: 2,
+                                title: '编辑客户',
+                                content: '/Customer/CustomerEditPage?Id=' + data.Id,
+                                area: ['700px', '450px']
+                            })
+                        }
+                        if (layEvent == 'del') {
+                            layer.confirm('真的删除行么', function (index) {
+                                obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                                layer.close(index);
+                                //向服务端发送删除指令
+                                layui.$.post(
+                                    '/Customer/DeleteCustomer?Id=' + data.Id,
+                                    { id: data.Id },
+                                    function (data, status) {
+                                        if (data.msg == 'ok') {
+                                            layer.msg('删除成功!');
                                         }
-                                    )
-                                });
-                            }
-                        });
+                                        //else {
+                                        //    layer.msg('出现未知错误!');
+                                        //}
+                                    }
+                                )
+                            });
+                        }
                     });
-                }
-                productsearch(curnum, limitcount);
-            })
+                });
+            }
+            productsearch(curnum, limitcount);
+        })
     </script>
     <script type="text/html" id="titleTpl1">
         {{fmtDate(d.ApplyTime)}}
     </script>
+    <script type="text/html" id="titleTpl2">
+        <div>
+            <a href="/Company/CompanyShow?id={{d.CompanyId}}">{{d.CompanyName}}</a>
+        </div>
+    </script>
+    <script type="text/html" id="titleTpl3">
+        <div>
+            <img src="../images/sokingIcon/{{d.TrademarkName}}" style="width:100%;height:100%;" />
+        </div>
+    </script>
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    </script>
-    <script type="text/javascript">
-        jQuery(function ($) {
-
-            $(".tbl-search").click(function () {
-                $(".table-responsive").slideDown("fast");
-            })
-
-            var oTable1 =
-                $('#trademark-table')
-                    .dataTable({
-                        bAutoWidth: false,
-                        bInfo: flase,
-                        "aoColumns": [
-                            { "bSortable": false },
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            { "bSortable": false },
-                            null,
-                            { "bSortable": false }
-                        ],
-                        "aaSorting": [],
-                    });
-
-            $(document).on('click', 'th input:checkbox', function () {
-                var that = this;
-                $(this).closest('table').find('tr > td:first-child input:checkbox')
-                    .each(function () {
-                        this.checked = that.checked;
-                        $(this).closest('tr').toggleClass('selected');
-                    });
-            });
-        })
-
     </script>
 </body>
 </html>

@@ -58,6 +58,49 @@ namespace SokingTreasure.OsSys.DAL
             };
             return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, pars);
         }
+        /// <summary>
+        /// 根据企业id获取企业信息和工商信息
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <returns></returns>
+        public static CompanyAndBusiness GetCompanyAndBusinessById(string id)
+        {
+            string sql = $"select * from CompanyInfo as t1,BusinessInfo as t2 where t1.BusinessId = t2.BusinessId and t1.CompanyId = {id}";
+            SqlDataReader reader = DbHelper.ExectueReader(sql, false);
+            CompanyAndBusiness model = new CompanyAndBusiness();
+            while (reader.Read())
+            {
+                model.BusinessId = (int)reader["BusinessId"];
+                model.CompanyId = (int)reader["CompanyId"];
+                model.CompanyName = reader["CompanyName"].ToString();
+                model.CompanyUrl = reader["CompanyUrl"].ToString();
+                model.CompanyType = reader["CompanyType"].ToString();
+                model.LegalRepresentative = reader["LegalRepresentative"].ToString();
+                model.CompanyPhone = reader["CompanyPhone"].ToString();
+                model.CompanyEmail = reader["CompanyEmail"].ToString();
+                model.CompanyProfile = reader["CompanyProfile"].ToString();
+                model.RegisteredCapital = reader["RegisteredCapital"].ToString();
+                model.RealinviteCapital = reader["RealinviteCapital"].ToString();
+                model.Management = reader["Management"].ToString();
+                model.RegisteredTime = (DateTime)reader["RegisteredTime"];
+                model.CreditCode = reader["CreditCode"].ToString();
+                model.Taxpayer = reader["Taxpayer"].ToString();
+                model.IndustryInvolved = reader["IndustryInvolved"].ToString();
+                model.RegistrationNumber = reader["RegistrationNumber"].ToString();
+                model.OrganizingCode = reader["OrganizingCode"].ToString();
+                model.ApprovalDate = (DateTime)reader["ApprovalDate"];
+                model.RegistrationAuthority = reader["RegistrationAuthority"].ToString();
+                model.BelongArea = reader["BelongArea"].ToString();
+                model.EnglishName = reader["EnglishName"].ToString();
+                model.FormerName = reader["FormerName"].ToString();
+                model.ContributorsIn = (int)reader["ContributorsIn"];
+                model.StaffSize = (int)reader["StaffSize"];
+                model.BusnissTerm = reader["BusnissTerm"].ToString();
+                model.BusinessAddress = reader["BusinessAddress"].ToString();
+                model.BusinessScope = reader["BusinessScope"].ToString();
+            }
+            return model;
+        }
 
         /// <summary>
         /// 企业信息编辑功能
@@ -76,7 +119,7 @@ namespace SokingTreasure.OsSys.DAL
                 new SqlParameter("@Ctype",company.CompanyType),
                 new SqlParameter("@Cid",company.CompanyId)
             };
-            return SqlHelper.ExecuteNonQuery(sql,CommandType.Text, pars);
+            return SqlHelper.ExecuteNonQuery(sql, CommandType.Text, pars);
         }
 
         /// <summary>
