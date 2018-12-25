@@ -309,7 +309,7 @@
             <div class="page-content">
                 <div class="page-content-area">
                     <div class="row">
-                        <div class="col-xs-12">
+                        <div class="col-xs-12" style="height:auto;">
                             <!-- PAGE CONTENT BEGINS -->
                             <div class="well well-sm">
                                 <button type="button" class="close line-height-0" data-dismiss="alert">
@@ -319,167 +319,25 @@
                                 <i class="fa fa-external-link bigger-110"></i>
                             </div>                   
 
-                            <table data-toggle="table" id="ArbetTable">
-                                
-                            </table>
+                            <div class="panel panel-default">
+                                <div class="panel-body form-group" style="margin-bottom:0px;">
+                                    <label class="col-sm-1 control-label" style="text-align:right;margin-top:5px">企业名称:</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" name="CompanyName" id="CompanyName"/>
+                                    </div>
+                                    <div>
+                                        <input type="button" class="btn btn-primary btn_search" value="搜索" onclick="serachCompany"/>
+                                    </div>
+                                </div>
 
+
+                            </div>
+
+                            <table id="tab" class="table table-hover"></table>                               
+                            
                         </div>
                     </div>
-
-                    <div class="hr hr-18 dotted hr-double"></div>
-
-                    <h4 class="pink">工商信息管理</h4>
-                        
-                    <div class="hr hr-18 dotted hr-double"></div>
-                        <div class="row">
-                            <table class="CSSearchTbl" cellpadding="0" cellspacing="0">
-                                <tr>
-                                    <td class="left">工商信息编号:</td>
-                                        <td class="right">
-                                            <input type="text" size="16" />
-                                        </td>
-                                        <td class="left">注册资本:</td>
-                                        <td class="right">
-                                            <input type="text" size="16" />
-                                        </td>
-                                        <td class="left">实邀资本:</td>
-                                        <td class="right">
-                                            <input type="text" size="16" />
-                                                </td>
-                                                <td class="left">经营状态:</td>
-                                                <td class="right">
-                                                    <select>
-                                                        <option>存续</option>
-                                                        <option>在营</option>
-                                                        <option>开业</option>
-                                                        <option>在册</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="left">成立时间:+</td>
-                                                <td class="right">
-                                                    <input type="text" size="16" />
-                                                </td>
-                                                <td class="left">统一社会信用代码</td>
-                                                <td class="right">
-                                                    <input type="text" size="16" />
-                                                </td>
-                                                <td class="left">纳税人识别号</td>
-                                                <td class="right">
-                                                    <input type="text" size="16" />
-                                                </td>
-                                                <td class="left">公司类型:</td>
-                                                <td class="right">
-                                                    <input type="text" size="16" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="left">所属行业:</td>
-                                                <td class="right">
-                                                    <input type="text" size="16" />
-                                                </td>
-                                                <td class="left">注册号:</td>
-                                                <td class="right">
-                                                    <input type="text" size="16" />
-                                                </td>
-                                                <td class="left">组织机构代码:</td>
-                                                <td class="right">
-                                                    <input type="text" size="16" />
-                                                </td>
-                                                <td class="left">核准日期:</td>
-                                                <td class="right">
-                                                    <input type="text" size="16" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="left">登记机关:</td>
-                                                <td class="right">
-                                                    <input type="text" size="16" />
-                                                </td>
-                                                <td class="left">所属地区:</td>
-                                                <td class="right">
-                                                    <input type="text" size="16" />
-                                                </td>
-                                                <td class="left">英文名:</td>
-                                                <td class="right">
-                                                    <input type="text" size="16" />
-                                                </td>
-                                                <td class="left">曾用名:</td>
-                                                <td class="right">
-                                                    <input type="text" size="16" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="left">参保人数:</td>
-                                                <td class="right">
-                                                    <input type="text" size="16" />
-                                                </td>
-                                                <td class="left">人员规模:</td>
-                                                <td class="right">
-                                                    <input type="text" size="16" />
-                                                </td>
-                                                <td class="left">营业期限:</td>
-                                                <td class="right">
-                                                    <input type="text" size="20" class="datePicker" />至<input type="text" size="20" class="datePicker" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="left">企业地址:</td>
-                                                <td class="right">
-                                                    <input type="text" size="22" />
-                                                </td>
-                                                <td class="left">经营范围:</td>
-                                                <td class="right">
-                                                    <input type="text" size="22" />
-                                                </td>
-                                                <td class="right" colspan="2">
-                                                    <button class="btn btn-primary pull-left col-sm-12 tbl-search" data-dismiss="modal" style="width:100px;">
-                                                        开始搜索
-                                                        <i class="ace-icon fa fa-search"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </table>
-
-                                        <div class="table-responsive">
-                                            <table id="sample-table-2" class="table table-striped table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-center">
-                                                            <label class="position-relative">
-                                                                <input type="checkbox" class="ace" />
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </th>
-                                                        <th>工商信息编号</th>
-                                                        <th>注册资本</th>
-                                                        <th>实邀资本</th>
-                                                        <th>经营状态</th>
-                                                        <th>成立时间</th>
-                                                        <th>统一社会信用代码</th>
-                                                        <th>纳税人识别号</th>
-                                                        <th>公司类型</th>
-                                                        <th>所属行业</th>
-                                                        <th>注册号</th>
-                                                        <th>组织机构代码</th>
-                                                        <th>核准日期</th>
-                                                        <th>登记机关</th>
-                                                        <th>所属地区</th>
-                                                        <th>英文名</th>
-                                                        <th>曾用名</th>
-                                                        <th>参保人数</th>
-                                                        <th>人员规模</th>
-                                                        <th>营业期限</th>
-                                                        <th>企业地址</th>
-                                                        <th>经营范围</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-
-                                        </div>
-
-                        </div><!-- /.col -->
+                    
                     </div><!-- /.row -->
                 </div><!-- /.page-content-area -->
             </div><!-- /.page-content -->
@@ -497,23 +355,11 @@
                 <!-- /section:basics/footer -->
             </div>
         </div>
-
-        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-        </a>
-    </div><!-- /.main-container -->
     <!-- basic scripts -->
     <!--[if !IE]> -->
     <script type="text/javascript">
         window.jQuery || document.write("<script src='~/assets/js/jquery.min.js'>" + "<" + "/script>");
     </script>
-
-    <!-- <![endif]-->
-    <!--[if IE]>
-    <script type="text/javascript">
-     window.jQuery || document.write("<script src='~/assets/js/jquery1x.min.js'>"+"<"+"/script>");
-    </script>
-    <![endif]-->
     <script type="text/javascript">
         if ('ontouchstart' in document.documentElement) document.write("<script src='~/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
     </script>
@@ -523,104 +369,172 @@
     <script src="~/assets/js/date-time/bootstrap-datepicker.min.js"></script>
     <script src="~/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
     <script src="~/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
-
-    <!-- ace scripts -->
     <script src="~/assets/js/ace-elements.min.js"></script>
     <script src="~/assets/js/ace.min.js"></script>
 
-    @*<script type="text/javascript">
-        var TableInit = function () {
-            var oTableInit = new Object();
-            oTableInit.Init = function () {
-                $('#ArbetTable').bootstrapTable({
-                    url: '/Company/CompanyInfo',//请求后台的URL
-                    method: 'get',           //请求的方式
-                    toolbar: '#toolbar',     //工具按钮使用的容器
-                    striped: true,           //是否使用行间隔色
-                    cache: false,            //是否使用缓存
-                    pagination: true,        //是否使用分页
-                    sortable: false,         //是否启用排序
-                    sortOrder: "asc",                   //排序方式
-                    queryParams: oTableInit.queryParams,//传递参数（*）
-                    sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
-                    pageNumber: 1,                      //初始化加载第一页，默认第一页
-                    pageSize: 10,                       //每页的记录行数（*）
-                    pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
-                    search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
-                    contentType: "application/x-www-form-urlencoded",
-                    strictSearch: true,
-                    showColumns: true,                  //是否显示所有的列
-                    showRefresh: true,                  //是否显示刷新按钮
-                    minimumCountColumns: 2,             //最少允许的列数
-                    clickToSelect: true,                //是否启用点击选中行
-                    height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-                    uniqueId: "CompanyId",              //每一行的唯一标识，一般为主键列
-                    showToggle: true,                   //是否显示详细视图和列表视图的切换按钮
-                    cardView: false,                    //是否显示详细视图
-                    detailView: false,                   //是否显示父子表
-                    columns: [
-                        {
-                            field: 'Id',
-                            title: '序号'
-                        }, {
-                            field: 'CompanyName',
-                            title: '企业名称'
-                        }, {
-                            field: 'LegalRepresentative',
-                            title: '法定代表人'
-                        }, {
-                            field: 'CompanyPhone',
-                            title: '企业电话'
-                        }, {
-                            field: 'CompanyEmail',
-                            title: '企业邮箱'
-                        }, {
-                            field: 'CompanyUrl',
-                            title: '企业网址'
-                        }, {
-                            field: 'CompanyProfile',
-                            title: '企业简介'
-                        }, {
-                            field: 'operate',
-                            itle: '操作',
-                            formatter: operateFormatter //自定义方法，添加操作按钮
-                        },
-                    ],
-                    rowStyle: function (row, index) {
-                        var classesArr = ['success', 'info'];
-                        var strclass = "";
-                        if (index % 2 === 0) {//偶数行
-                            strclass = classesArr[0];
-                        } else {//奇数行
-                            strclass = classesArr[1];
+    <script type="text/javascript">
+        $(function () {
+            var columns = [
+                {
+                    checkbox: true,
+                    align: 'center',
+                    valign: 'middle',
+                },
+                {
+                    title: '序号',
+                    field: 'Id',
+                    align: 'center',
+                    valign: 'middle',
+                },
+                {
+                    title: '企业名称',
+                    field: 'CompanyName',
+                    align: 'center',
+                    valign: 'middle',
+                },
+                {
+                    title: '法定代表人',
+                    field: 'LegalRepresentative',
+                    align: 'center',
+                    valign: 'middle',
+                },
+                {
+                    title: '企业电话',
+                    field: 'CompanyPhone',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    title: '企业邮箱',
+                    field: 'CompanyEmail',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    title: '企业网址',
+                    field: 'CompanyUrl',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    title: '企业简介',
+                    field: 'CompanyProfile',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    title: '操作',
+                    field: 'Id',
+                    width: 150,
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        var e = '<button href="#" class="btn btn-primary" onclick="edit(\'' + row.Id + '\')">编辑<button>';
+                        var d = '<button href="#" class="btn btn-danger" onclick="del(\'' + row.Id + '\')">删除<button>';
+                        return e + d;
+                    }
+                }
+            ];
+            a('./data.php', columns);
+        });
+
+        function a(dataurl, columns) {
+            $('#tab').bootstrapTable({
+                method: 'post',
+                url: "http://localhost:61525/Company/CompanyInfo", //请求路径
+                dataType: "json",
+                striped: true,                //显示行间隔色
+                cache: false,                 //使用缓存
+                pageNumber: 1,                //初始化加载第几页
+                pagination: true,             //是否分页
+                sidePagination: "server",     //服务器端分页
+                paginationPreText: '上一页',
+                paginationNextText: '下一页',
+                pageSize: 10,                 //单页记录数据
+                showFooter: true,             //显示列脚
+                showRefresh: true,            //刷新按钮
+                showPaginationSwitch: false,
+                sortable: false,              //是否启用排序
+                singleSelect: false,
+                search: false,                //显示搜索框
+                buttonsAlign: "right",         //按钮对齐方式
+                pageList: [5, 10, 25, 50],    //可选择单页记录数
+                paginationPreText:'上一页',
+                paginationNextText: '下一页',
+                data_local: "zh-US",
+                //查询操作的参数
+                queryParams(params) {
+                    return {
+                        cp: params.offset,
+                        ps: params.limit
+                    };
+                },
+                idField: "Id",
+                columns: [
+                    {
+                        title: '序号',
+                        field: 'Id',
+                        align: 'center',
+                        valign: 'middle',
+                    },
+                    {
+                        title: '企业名称',
+                        field: 'CompanyName',
+                        align: 'center',
+                        valign: 'middle',
+                    },
+                    {
+                        title: '法定代表人',
+                        field: 'LegalRepresentative',
+                        align: 'center',
+                        valign: 'middle',
+                    },
+                    {
+                        title: '企业电话',
+                        field: 'CompanyPhone',
+                        align: 'center',
+                        valign: 'middle',
+                    }, {
+                        title: '企业邮箱',
+                        field: 'CompanyEmail',
+                        align: 'center',
+                        valign: 'middle',
+                    }, {
+                        title: '企业网址',
+                        field: 'CompanyUrl',
+                        align: 'center',
+                        valign: 'middle',
+                    }, {
+                        title: '企业简介',
+                        field: 'CompanyProfile',
+                        align: 'center',
+                        valign: 'middle',
+                    }, {
+                        title: '操作',
+                        field: 'Id',
+                        width: 150,
+                        align: 'center',
+                        formatter: function (value, row, index) {
+                            return '< a href= "#" mce_href= "#" onclick= "edit(\'' + row.userId + '\')" > 操作</a > ';                          
                         }
-                        return { classes: strclass };
-                    },//隔行变色
-                });
 
-            };
+                    }
+                );
 
-            oTableInit.queryParams = function (params) {
-                var temp = {
-                    limit: params.limit,   //页面大小
-                    offset: params.offset
-                };
-                return temp;
-            };
-            return oTableInit;
-        };
+            
 
-        function operateFormatter(value, row, index) {//赋予的参数
-            return [
-                '<a class="btn active disabled" href="#">编辑</a>',
-                '<a class="btn active" href="#">档案</a>',
-                '<a class="btn btn-default" href="#">记录</a>'
-            ].join('');
+            },
+            
+
+
+
+
+
+                ]
+
         }
 
+        //搜索操作
+        function serachCompany() {
+            $("#tab").bootstrapTable('refresh');
+        }
 
-
-    </script>*@
+    </script>
 
 </body>
 </html>

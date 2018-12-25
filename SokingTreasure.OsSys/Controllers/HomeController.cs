@@ -43,7 +43,7 @@ namespace SokingTreasure.OsSys.Controllers
         }
 
         /// <summary>
-        /// 收件箱
+        /// 警示
         /// </summary>
         /// <returns></returns>
         public ActionResult Inbox()
