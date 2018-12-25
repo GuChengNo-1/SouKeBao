@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace SokingTreasure.OsSys.Models
 {
-    /// <summary>
-    /// 企业信息
-    /// </summary>
-    public class CompanyInfo : EntityBase
+    public class CompanyAndBusiness:BusinessInfo
     {
         /// <summary>
         /// 企业编号
@@ -44,29 +41,8 @@ namespace SokingTreasure.OsSys.Models
         /// </summary>
         public string CompanyType { get; set; }
         /// <summary>
-        /// 工商信息
+        /// 工商信息Id
         /// </summary>
         public int BusinessId { get; set; }
-
-        /// <summary>
-        /// 股东信息
-        /// </summary>
-        public int ShareholderId { get; set; }
-
-        /// <summary>
-        /// 变更记录
-        /// </summary>
-        public int ChangeRecordId { get; set; }
-
-        /// <summary>
-        /// 商标信息
-        /// </summary>
-        public int TrademarkId { get; set; }
-
-        /// <summary>
-        /// 作品著作权
-        /// </summary>
-        public int CopyrightWorksId { get; set; }
     }
 }
-

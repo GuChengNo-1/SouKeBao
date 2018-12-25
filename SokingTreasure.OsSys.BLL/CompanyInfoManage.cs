@@ -40,6 +40,15 @@ namespace SokingTreasure.OsSys.BLL
             }
             return false;
         }
+        /// <summary>
+        /// 根据企业id获取企业信息和工商信息
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <returns></returns>
+        public static CompanyAndBusiness GetCompanyAndBusinessById(string id)
+        {
+            return CompanyInfoService.GetCompanyAndBusinessById(id);
+        }
 
         /// <summary>
         /// 企业信息编辑

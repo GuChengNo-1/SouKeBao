@@ -42,7 +42,7 @@ namespace SokingTreasure.OsSys.Models
         /// <summary>
         /// 注册号
         /// </summary>
-        public int RegistrationNumber { get; set; }
+        public string RegistrationNumber { get; set; }
         /// <summary>
         /// 组织机构代码
         /// </summary>

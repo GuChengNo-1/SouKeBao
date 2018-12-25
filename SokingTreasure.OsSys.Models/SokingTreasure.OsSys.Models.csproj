@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BusinessInfo.cs" />
     <Compile Include="ChangeRecord.cs" />
+    <Compile Include="CompanyAndBusiness.cs" />
     <Compile Include="CompanyAndTrademark.cs" />
     <Compile Include="CompanyInfo.cs" />
     <Compile Include="CopyrightWorks.cs" />

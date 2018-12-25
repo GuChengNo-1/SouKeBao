@@ -520,6 +520,7 @@
     <Content Include="images\img09.jpg" />
     <Content Include="images\img10.jpg" />
     <Content Include="images\img11.jpg" />
+    <Content Include="images\sokingIcon\xiaomi.jpg" />
     <Content Include="images\upload2.gif" />
     <Content Include="layui\css\layui.css" />
     <Content Include="layui\css\layui.mobile.css" />
@@ -850,7 +851,6 @@
     <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.min.map" />
-
     <Content Include="Scripts\jigsaw.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -901,6 +901,10 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Copyright\CopyrightWorksShow.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Trademark\TrademarkShow.cshtml" />
+    <Content Include="Views\Company\CompanyShow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
