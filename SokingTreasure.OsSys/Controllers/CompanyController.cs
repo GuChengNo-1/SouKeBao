@@ -31,6 +31,11 @@ namespace SokingTreasure.OsSys.Controllers
             }
             return RedirectToAction("HomePage","Home");
         }
+        /// <summary>
+        /// 企业详情数据展示
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult GetCompanyAndBusiness(string id)
         {
             var data = CompanyInfoManage.GetCompanyAndBusinessById(id);
