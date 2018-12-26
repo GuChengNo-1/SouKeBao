@@ -24,9 +24,9 @@
     <script src="~/assets/js/ace-extra.min.js"></script>
     <script src="~/assets/js/jquery.min.js"></script>
     <script src="~/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/bootstrap/js/bootstrap-table.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap-table.min.js"></script> 
     <script src="~/bootstrap/js/bootstrap-table-zh-CN.min.js"></script>
-    
+    <script src="~/bootstrap/js/bootstrap-table-export.js"></script>
 </head>
 <body class="no-skin">
     <div id="navbar" class="navbar navbar-default">
@@ -319,20 +319,6 @@
                                 <i class="fa fa-external-link bigger-110"></i>
                             </div>                   
 
-                            <div class="panel panel-default">
-                                <div class="panel-body form-group" style="margin-bottom:0px;">
-                                    <label class="col-sm-1 control-label" style="text-align:right;margin-top:5px">企业名称:</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control" name="CompanyName" id="CompanyName"/>
-                                    </div>
-                                    <div>
-                                        <input type="button" class="btn btn-primary btn_search" value="搜索" onclick="serachCompany"/>
-                                    </div>
-                                </div>
-
-
-                            </div>
-
                             <table id="tab" class="table table-hover"></table>                               
                             
                         </div>
@@ -371,168 +357,116 @@
     <script src="~/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
     <script src="~/assets/js/ace-elements.min.js"></script>
     <script src="~/assets/js/ace.min.js"></script>
-
     <script type="text/javascript">
-        $(function () {
-            var columns = [
-                {
-                    checkbox: true,
-                    align: 'center',
-                    valign: 'middle',
-                },
-                {
-                    title: '序号',
-                    field: 'Id',
-                    align: 'center',
-                    valign: 'middle',
-                },
-                {
-                    title: '企业名称',
-                    field: 'CompanyName',
-                    align: 'center',
-                    valign: 'middle',
-                },
-                {
-                    title: '法定代表人',
-                    field: 'LegalRepresentative',
-                    align: 'center',
-                    valign: 'middle',
-                },
-                {
-                    title: '企业电话',
-                    field: 'CompanyPhone',
-                    align: 'center',
-                    valign: 'middle',
-                }, {
-                    title: '企业邮箱',
-                    field: 'CompanyEmail',
-                    align: 'center',
-                    valign: 'middle',
-                }, {
-                    title: '企业网址',
-                    field: 'CompanyUrl',
-                    align: 'center',
-                    valign: 'middle',
-                }, {
-                    title: '企业简介',
-                    field: 'CompanyProfile',
-                    align: 'center',
-                    valign: 'middle',
-                }, {
-                    title: '操作',
-                    field: 'Id',
-                    width: 150,
-                    align: 'center',
-                    formatter: function (value, row, index) {
-                        var e = '<button href="#" class="btn btn-primary" onclick="edit(\'' + row.Id + '\')">编辑<button>';
-                        var d = '<button href="#" class="btn btn-danger" onclick="del(\'' + row.Id + '\')">删除<button>';
-                        return e + d;
-                    }
-                }
-            ];
-            a('./data.php', columns);
+        $('#tab').bootstrapTable({
+            url: '/Json/data1.json',    //请求路径
+            queryParams: "queryParams",
+            toolbar: "#toolbar",
+            sidePagination: "true",      //页码
+            striped: true,               //显示行间隔色
+            uniqueId: "CompanyId",       //默认主键列
+            pagination: true,            //是否分页
+            sortable: true,              //是否启用排序
+            pageNumber: "1",             //初始化加载第几页
+            pageSize: "10",              //单页记录数据
+            pageList:[10,25,50,100],
+            paginationPreText: '上一页',
+            paginationNextText: '下一页',
+            minimumCountColumns: "2",
+            showFooter: true,             //显示列脚
+            showRefresh: true,            //刷新按钮
+            showColumns: true,            //显示所有列
+            showToggle: true,             //是否显示详细视图和列表视图的切换按钮
+            cardView: false,               //显示详细视图
+            //列数据编辑
+            columns: [{
+                title: '序号',
+                field: 'CompanyId',
+                align: 'center',
+                valign: 'middle',
+            },
+            {
+                title: '企业名称',
+                field: 'CompanyName',
+                align: 'center',
+                valign: 'middle',
+            },
+            {
+                title: '法定代表人',
+                field: 'LegalRepresentative',
+                align: 'center',
+                valign: 'middle',
+            },
+            {
+                title: '企业电话',
+                field: 'CompanyPhone',
+                align: 'center',
+                valign: 'middle',
+            }, {
+                title: '企业邮箱',
+                field: 'CompanyEmail',
+                align: 'center',
+                valign: 'middle',
+            }, {
+                title: '企业网址',
+                field: 'CompanyUrl',
+                align: 'center',
+                valign: 'middle',
+            }, {
+                title: '企业简介',
+                field: 'CompanyProfile',
+                align: 'center',
+                valign: 'middle',
+            }, {
+                title: '操作',
+                field: 'CompanyId',
+                width: 120,
+                align: 'center',
+                valign: 'middle',
+                formatter: actionFormatter,
+            }]
         });
 
-        function a(dataurl, columns) {
-            $('#tab').bootstrapTable({
-                method: 'post',
-                url: "http://localhost:61525/Company/CompanyInfo", //请求路径
-                dataType: "json",
-                striped: true,                //显示行间隔色
-                cache: false,                 //使用缓存
-                pageNumber: 1,                //初始化加载第几页
-                pagination: true,             //是否分页
-                sidePagination: "server",     //服务器端分页
-                paginationPreText: '上一页',
-                paginationNextText: '下一页',
-                pageSize: 10,                 //单页记录数据
-                showFooter: true,             //显示列脚
-                showRefresh: true,            //刷新按钮
-                showPaginationSwitch: false,
-                sortable: false,              //是否启用排序
-                singleSelect: false,
-                search: false,                //显示搜索框
-                buttonsAlign: "right",         //按钮对齐方式
-                pageList: [5, 10, 25, 50],    //可选择单页记录数
-                paginationPreText:'上一页',
-                paginationNextText: '下一页',
-                data_local: "zh-US",
-                //查询操作的参数
-                queryParams(params) {
-                    return {
-                        cp: params.offset,
-                        ps: params.limit
-                    };
-                },
-                idField: "Id",
-                columns: [
-                    {
-                        title: '序号',
-                        field: 'Id',
-                        align: 'center',
-                        valign: 'middle',
-                    },
-                    {
-                        title: '企业名称',
-                        field: 'CompanyName',
-                        align: 'center',
-                        valign: 'middle',
-                    },
-                    {
-                        title: '法定代表人',
-                        field: 'LegalRepresentative',
-                        align: 'center',
-                        valign: 'middle',
-                    },
-                    {
-                        title: '企业电话',
-                        field: 'CompanyPhone',
-                        align: 'center',
-                        valign: 'middle',
-                    }, {
-                        title: '企业邮箱',
-                        field: 'CompanyEmail',
-                        align: 'center',
-                        valign: 'middle',
-                    }, {
-                        title: '企业网址',
-                        field: 'CompanyUrl',
-                        align: 'center',
-                        valign: 'middle',
-                    }, {
-                        title: '企业简介',
-                        field: 'CompanyProfile',
-                        align: 'center',
-                        valign: 'middle',
-                    }, {
-                        title: '操作',
-                        field: 'Id',
-                        width: 150,
-                        align: 'center',
-                        formatter: function (value, row, index) {
-                            return '< a href= "#" mce_href= "#" onclick= "edit(\'' + row.userId + '\')" > 操作</a > ';                          
-                        }
-
-                    }
-                );
-
-            
-
-            },
-            
-
-
-
-
-
-                ]
-
+        function actionFormatter(value, row, index) {
+            var id = value;
+            var result = "";
+            result += "<a href='javascript:;' class='btn btn-xs green' onclick=\"EditViewById('" + id + "',view='view')\"title='查看'><span class='glyphicon glyphicon-search'></span></a>";
+            result += "<a href='javascript:;' class='btn btn-xs blue' onclick=\"EditViewById('" + id + "')\"title='编辑'><span class='glyphicon glyphicon-pencil'></span></a>";
+            result += "<a href='javascript:;' class='btn btn-xs red' onclick=\"DeleteByIds('" + id + "')\"title='删除'><span class='glyphicon glyphicon-remove'></span></a>";
+            return result;
         }
 
-        //搜索操作
-        function serachCompany() {
-            $("#tab").bootstrapTable('refresh');
-        }
+
+            //------------->生成Excel表
+            //创建工作薄
+            var workbook1 = new HSSFWorkbook();
+            //创建表
+            var table = workbook.CreateSheet("joye.net");
+
+            //模拟20行20列数据
+            for (var i = 0; i < 20; i++)
+            {
+                var row = table.CreateRow(i);
+                for (int j = 0; j < 20; j++)
+                {
+                    var cell = row.CreateCell(j);
+                    cell.SetCellValue(j);
+                }
+            }
+            //打开xls文件，如没有则创建，如存在则在创建是不要打开该文件
+            using (var fs = File.OpenWrite(@"c:/joye.net.xls"))
+            {
+                workbook.Write(fs);   //向打开的这个xls文件中写入mySheet表并保存。
+                Console.WriteLine("生成成功");
+            }
+
+                //导出文件路径
+                using(var fs = File.OpenRead(@"E:/ExcelDerive/Sheet.xls")){
+
+
+                }
+
+
 
     </script>
 
