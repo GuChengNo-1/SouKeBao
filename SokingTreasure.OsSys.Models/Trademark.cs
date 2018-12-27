@@ -9,7 +9,7 @@ namespace SokingTreasure.OsSys.Models
     /// <summary>
     /// 商标信息
     /// </summary>
-    public class Trademark
+    public class Trademark:EntityBase
     {
         /// <summary>
         /// 申请日期

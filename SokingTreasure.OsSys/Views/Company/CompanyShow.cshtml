@@ -208,7 +208,7 @@
                             <b class="arrow"></b>
                         </li>
                         <li class="">
-                            <a href="login.html">
+                            <a href="/User/Login">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 登录注册
                             </a>
@@ -558,12 +558,12 @@
     <!-- basic scripts -->
     <!--[if !IE]> -->
     <script type="text/javascript">
-        window.jQuery || document.write("<script src='~/assets/js/jquery.min.js'>" + "<" + "/script>");
+        window.jQuery || document.write("<script src='/assets/js/jquery.min.js'>" + "<" + "/script>");
     </script>
     <!-- <![endif]-->
     <script src="~/Scripts/jquery-3.2.1.js"></script>
     <script type="text/javascript">
-        if ('ontouchstart' in document.documentElement) document.write("<script src='~/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+        if ('ontouchstart' in document.documentElement) document.write("<script src='/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
     </script>
     <script src="~/layui/layui.all.js"></script>
     <script src="~/layui/layui.js"></script>
@@ -591,19 +591,8 @@
     </script>
     <script>
         $(function () {
-            layui.use(['form', 'layedit', 'laydate'], function () {
-                var form = layui.form
-                    , layer = layui.layer
-                    , layedit = layui.layedit
-                    , laydate = layui.laydate;
-                //日期
-                form.render();
-                laydate.render({
-                    elem: '#date'
-                });
-                laydate.render({
-                    elem: '#date1'
-                });
+            layui.use(['table', 'layer'], function () {
+                var index = layer.load(1); //添加laoding,0-2两种方式
                 //表单初始赋值
                 $.ajax({
                     url: '/Company/GetCompanyAndBusiness?id='+@ViewBag.CompanyId,
@@ -637,6 +626,7 @@
                         $("#BusnissTerm").text(data.BusnissTerm == "" ? '-' : data.BusnissTerm);
                         $("#BusinessAddress").text(data.BusinessAddress == "" ? "-" : data.BusinessAddress);
                         $("#BusinessScope").text(data.BusinessScope == "" ? "-" : data.BusinessScope);
+                        layer.close(index);    //返回数据关闭loading
                     }
                 })
             });

@@ -1,8 +1,11 @@
-﻿using SokingTreasure.OsSys.BLL;
+﻿using NPOI.SS.UserModel;
+using SokingTreasure.OsSys.BLL;
+using SokingTreasure.OsSys.Common;
 using SokingTreasure.OsSys.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,6 +14,7 @@ namespace SokingTreasure.OsSys.Controllers
 {
     public class CopyrightController : Controller
     {
+        private static DataTable table;
         // GET: Copyright
         public ActionResult CopyrightWorksShow()
         {
@@ -35,7 +39,7 @@ namespace SokingTreasure.OsSys.Controllers
             //查询条件（登记类别）
             var category = Request.Params["category"] == "" ? null : Request.Params["category"];
             int count;
-            DataTable table = CopyrightManage.GetCopyrightByWhere(index, limit, companyName, worksName, category, out count);
+            table = CopyrightManage.GetCopyrightByWhere(index, limit, companyName, worksName, category, out count);
             List<CompanyAndCopyright> copyrightList = new List<CompanyAndCopyright>(); 
             foreach (DataRow reader in table.Rows)
             {
@@ -61,6 +65,5 @@ namespace SokingTreasure.OsSys.Controllers
             }
             return Json(new { code = 0, msg = "", tatol = count, data = copyrightList.ToList() }, JsonRequestBehavior.AllowGet);
         }
-
     }
 }

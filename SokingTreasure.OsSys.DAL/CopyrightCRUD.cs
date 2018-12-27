@@ -54,5 +54,33 @@ namespace SokingTreasure.OsSys.DAL
                 }
             }
         }
+        /// <summary>
+        /// 作品著作权添加
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static bool InsertCopyright(CopyrightWorks model)
+        {
+            string sql = $"insert into	CopyrightWorks values('{model.WorksName}','{model.Registration}','{model.Category}','{model.FinishTime}','{model.RegistrationTime}','{model.FirstPublish}')";
+            if (DbHelper.ExecuteNonQuery(sql,false) >= 1)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 修改作品著作权
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static bool UpdateCopyright(CopyrightWorks model)
+        {
+            string sql = $"update CopyrightWorks set WorksName=('{model.WorksName}',Registration='{model.Registration}',Category='{model.Category}',FinishTime='{model.FinishTime}',RegistrationTime='{model.RegistrationTime}',FirstPublish='{model.FirstPublish}' where id ={model.Id})";
+            if (DbHelper.ExecuteNonQuery(sql, false) >= 1)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

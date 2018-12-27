@@ -256,7 +256,7 @@
                         </li>
 
                         <li class="">
-                            <a href="login.html">
+                            <a href="/User/Login">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 登录注册
                             </a>
@@ -500,6 +500,7 @@
                 <div class="footer-content">
                     <span class="bigger-120">
                         上海谷程网络科技有限公司 &copy; 2019
+                        <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=Q3F2d3B1c3N3cHIDMjJtICwu" style="text-decoration:none;color:#FF5722;">联系我们</a>
                     </span>
                 </div>
 
@@ -559,11 +560,13 @@
                 layui.use(['table', 'laypage'], function () {
                     var table = layui.table,
                         laypage = layui.laypage;
+                    var index = layer.load(2); //添加laoding,0-2两种方式
                     //第一个实例
                     table.render({
                         elem: '#copyright-table'
-                        , url: '/Copyright/CopyrightListShow?index='+curnum+"&&limit="+limitcount//数据接口
+                        , url: '/Copyright/CopyrightListShow?index=' + curnum + "&&limit=" + limitcount//数据接口
                         , id: 'copyright'
+                        , loading: true
                         , defaultToolbar: ['filter', 'print', 'exports']
                         , cols: [[
                             { field: 'NumberId', title: '序号', width: 80, sort: true, fixed: 'left', unresize: true }
@@ -590,6 +593,7 @@
                                         limitcount = obj.limit;
                                         productsearch(curnum, limitcount);
                                     }
+                                    layer.close(index);    //返回数据关闭loading
                                 }
                             });
                         }
@@ -616,6 +620,7 @@
                                             limitcount = obj.limit;
                                             productsearch(curnum, limitcount);
                                         }
+                                        layer.close(index);    //返回数据关闭loading
                                     }
                                 });
                             }
