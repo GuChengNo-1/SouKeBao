@@ -1,9 +1,14 @@
-﻿using SokingTreasure.OsSys.BLL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using System.IO;
+using System.Data;
+using System.Collections;
+using SokingTreasure.OsSys.BLL;
 
 namespace SokingTreasure.OsSys.Controllers
 {
@@ -18,6 +23,13 @@ namespace SokingTreasure.OsSys.Controllers
         {
             return View();
         }
+
+        public ActionResult Derive()
+        {
+
+
+        }
+
         /// <summary>
         /// 企业数据展示页面
         /// </summary>
@@ -31,12 +43,16 @@ namespace SokingTreasure.OsSys.Controllers
             }
             return RedirectToAction("HomePage","Home");
         }
+        /// <summary>
+        /// 企业详情数据展示
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult GetCompanyAndBusiness(string id)
         {
             var data = CompanyInfoManage.GetCompanyAndBusinessById(id);
             return Json(data, JsonRequestBehavior.AllowGet);
         }
         
-
     }
 }

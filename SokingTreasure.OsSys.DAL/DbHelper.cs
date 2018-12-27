@@ -120,7 +120,23 @@ namespace SokingTreasure.OsSys.DAL
             }
         }
 
+        public static SqlDataReader EcuteReader(string sql, CommandType ctType, SqlParameter[] paras)
+        {
+            SqlConnection sqlcon = new SqlConnection(connStr);
 
+            sqlcon.Open();
+            using (SqlCommand scmd = new SqlCommand(sql, sqlcon))
+            {
+                scmd.CommandType = ctType;
+                if (paras.Length > 0)
+                {
+                    scmd.Parameters.AddRange(paras);
+                }
+                return scmd.ExecuteReader();
+
+
+            }
+        }
 
     }
 }

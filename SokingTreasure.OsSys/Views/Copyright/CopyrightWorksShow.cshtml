@@ -1,6 +1,6 @@
 ﻿@{
     Layout = null;
-    ViewBag.Title = "搜客宝-工商信息查询-公司企业注册信息查询-全国企业信用信息公示系统";
+    ViewBag.Title = "搜客宝-作品著作权信息查询-公司企业注册信息查询-全国企业信用信息公示系统";
 }
 
 <!DOCTYPE html>
@@ -311,7 +311,7 @@
                         <a href="javascript:void(0)">企业管理</a>
                     </li>
                     <li>
-                        <a href="/Trademark/TrademarkShow">商标信息</a>
+                        <a href="/Trademark/TrademarkShow">作品著作权信息</a>
                     </li>
                 </ul><!-- /.breadcrumb -->
                 <!-- #section:basics/content.searchbox -->
@@ -339,19 +339,19 @@
                                 <div class="col-xs-12">
 
                                     <div class="table-header">
-                                        商标管理
+                                        作品管理
                                     </div>
 
                                     <table width="100%" class="CSSearchTbl" cellpadding="0" cellspacing="0">
                                         <tr>
                                             <td class="left">企业名称：</td>
                                             <td class="right"><input type="text" id="where-companyName" size="16" /></td>
-                                            <td class="left">商品名称：</td>
-                                            <td class="right"><input type="text" id="where-commodityName" size="16" /></td>
-                                            <td class="left">申请日期范围：</td>
-                                            <td class="right"><input type="text" id="where-applyTime-begin" size="16" placeholder="yyyy-mm-dd" class="datePicker" /> 至 <input type="text" id="where-applyTime-over" placeholder="yyyy-mm-dd" size="16" class="datePicker" /></td>
+                                            <td class="left">作品名称：</td>
+                                            <td class="right"><input type="text" id="where-worksName" size="16" /></td>
+                                            <td class="left">登记类别：</td>
+                                            <td class="right"><input type="text" id="where-category" size="16" /></td>
                                             <td class="right" colspan="2">
-                                                <button id="trademark-where-btn" class="btn btn-primary pull-left col-sm-12 tbl-search" data-dismiss="modal">
+                                                <button id="copyright-where-btn" class="btn btn-primary pull-left col-sm-12 tbl-search" data-dismiss="modal">
                                                     开始搜索
                                                     <i class="ace-icon fa fa-search"></i>
                                                 </button>
@@ -359,7 +359,7 @@
                                         </tr>
                                     </table>
                                     <div class="table-responsive">
-                                        <table id="trademark-table" lay-filter="test" class="table table-striped table-bordered table-hover" data-toggle="table" data-url="data1.json"></table>
+                                        <table id="copyright-table" lay-filter="test" class="table table-striped table-bordered table-hover" data-toggle="table" data-url="data1.json"></table>
                                         <div id="layui-paging"></div>
                                         <div class="modal-footer no-margin-top">
                                             <ul class="pagination pull-right no-margin">
@@ -514,12 +514,12 @@
     <!-- basic scripts -->
     <!--[if !IE]> -->
     <script type="text/javascript">
-        window.jQuery || document.write("<script src='~/assets/js/jquery.min.js'>" + "<" + "/script>");
+        window.jQuery || document.write("<script src='/assets/js/jquery.min.js'>" + "<" + "/script>");
     </script>
     <!-- <![endif]-->
     <script src="~/Scripts/jquery-3.2.1.js"></script>
     <script type="text/javascript">
-        if ('ontouchstart' in document.documentElement) document.write("<script src='~/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+        if ('ontouchstart' in document.documentElement) document.write("<script src='/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
     </script>
     <script src="~/layui/layui.all.js"></script>
     <script src="~/layui/layui.js"></script>
@@ -561,19 +561,19 @@
                         laypage = layui.laypage;
                     //第一个实例
                     table.render({
-                        elem: '#trademark-table'
-                        , url: '/Trademark/TrademarkListShow?index=' + curnum + "&&limit=" + limitcount//数据接口
-                        , id: 'trademark'
+                        elem: '#copyright-table'
+                        , url: '/Copyright/CopyrightListShow?index='+curnum+"&&limit="+limitcount//数据接口
+                        , id: 'copyright'
                         , defaultToolbar: ['filter', 'print', 'exports']
                         , cols: [[
                             { field: 'NumberId', title: '序号', width: 80, sort: true, fixed: 'left', unresize: true }
                             , { field: 'CompanyName', title: '企业名称', width: 260, unresize: true, templet: '#titleTpl2' }
-                            , { field: 'ApplyTime', title: '申请日期', width: 120, unresize: true, templet: '#titleTpl1' }
-                            , { field: 'TrademarkName', title: '商标', width: 80, unresize: true, templet: '#titleTpl3' }
-                            , { field: 'CommodityName', title: '商标名称', width: 150, unresize: true }
-                            , { field: 'Registration', title: '注册号', width: 200 }
-                            , { field: 'Category', title: '类别', width: 240 }
-                            , { field: 'ProcessState', title: '流程状态', width: 240, unresize: true }
+                            , { field: 'WorksName', title: '作品名称', width: 200, unresize: true }
+                            , { field: 'FirstPublish', title: '首次发表日期', width: 120, unresize: true, templet: '#titleTpl4' }
+                            , { field: 'FinishTime', title: '创作完成日期', width: 120, unresize: true, templet: '#titleTpl3' }
+                            , { field: 'Registration', title: '登记号', width: 200 }
+                            , { field: 'RegistrationTime', title: '登记日期', width: 120, unresize: true, templet: '#titleTpl1' }
+                            , { field: 'Category', title: '登记类别', width: 240 }
                             , { field: 'Right', title: '操作', width: 120, toolbar: '#barDemo' }
                         ]]
                         , page: false
@@ -595,13 +595,12 @@
                         }
                     });
                     //查询客户
-                    $('#trademark-where-btn').click(function () {
-                        table.reload('trademark', {
+                    $('#copyright-where-btn').click(function () {
+                        table.reload('copyright', {
                             where: { //设定异步数据接口的额外参数，任意设
                                 companyName: $('#where-companyName').val(),
-                                applyTimeBegin: $('#where-applyTime-begin').val(),
-                                applyTimeOver: $('#where-applyTime-over').val(),
-                                commodityName: $('#where-commodityName').val(),
+                                worksName: $('#where-worksName').val(),
+                                category: $('#where-category').val(),
                             },
                             page: false
                             , done: function (res) {
@@ -673,7 +672,7 @@
         })
     </script>
     <script type="text/html" id="titleTpl1">
-        {{fmtDate(d.ApplyTime)}}
+        {{fmtDate(d.RegistrationTime)}}
     </script>
     <script type="text/html" id="titleTpl2">
         <div>
@@ -681,9 +680,10 @@
         </div>
     </script>
     <script type="text/html" id="titleTpl3">
-        <div>
-            <img src="../images/sokingIcon/{{d.TrademarkName}}" style="width:100%;height:100%;" />
-        </div>
+        {{fmtDate(d.FinishTime)}}
+    </script>
+    <script type="text/html" id="titleTpl4">
+        {{fmtDate(d.FirstPublish)}}
     </script>
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
