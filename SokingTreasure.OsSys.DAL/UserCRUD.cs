@@ -48,8 +48,8 @@ namespace SokingTreasure.OsSys.DAL
                 ul.Id = (int)item["Id"];
                 ul.LoginName = item["LoginName"].ToString();
                 ul.LoginPwd = item["LoginPwd"].ToString();
-                ul.LoginEmail = item["LoginEmail"].ToString();
-                ul.LoginPhone = item["LoginPhone"].ToString();
+                ul.UserEmail = item["UserEmail"].ToString();
+                ul.UserPhone = item["UserPhone"].ToString();
                 ul.StateId = (int)item["StateId"];
             }
             return ul;
@@ -72,7 +72,53 @@ namespace SokingTreasure.OsSys.DAL
             }
             return false;
         }
+        /// <summary>
+        /// 更改用户信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
 
+        public static bool UpdateUser(UserLogin model)
+        {
+            string sql = $"update UserLogin set UserRealName = '{model.UserRealName}',UserAge = '{model.UserAge}',UserSex = '{model.UserSex}',UserPhone = '{model.UserPhone}',UserEmail = '{model.UserEmail}',UserAddress = '{model.UserAddress}' where Id = {model.Id}";
+            if (DbHelper.ExecuteNonQuery(sql,false) >= 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 根据用户名查询该用户所有信息
+        /// </summary>
+        /// <param name="loginName"></param>
+        /// <returns></returns>
+        public static UserLogin GetUserByLoginName(string loginName)
+        {
+            string sql = $"select * from UserLogin where LoginName=@LoginName";
+            SqlParameter[] param = {
+                 new SqlParameter("@LoginName",loginName)
+             };
+            SqlDataReader reader = DbHelper.ExectueReader(sql, false, param);
+            UserLogin user = new UserLogin();
+            while (reader.Read())
+            {
+                user.Id = (int)reader["Id"];
+                user.LoginName = reader["LoginName"].ToString();
+                user.LoginCount = (int)reader["LoginCount"];
+                user.LastLoginTime = (DateTime)reader["LastLoginTime"];
+                user.LoginPwd = reader["LoginPwd"].ToString();
+                user.UserRealName = reader["UserRealName"].ToString();
+                user.UserAge = (int)reader["UserAge"];
+                user.UserSex = reader["UserSex"].ToString();
+                user.UserEmail = reader["UserEmail"].ToString();
+                user.UserPhone = reader["UserPhone"].ToString();
+                user.UserAddress = reader["UserAddress"].ToString();
+                user.UserRegistrTime = (DateTime)reader["UserRegistrTime"];
+                user.StateId = (int)reader["StateId"];
+            }
+            return user;
+        }
         /// <summary>
         /// 重置用户密码
         /// </summary>
@@ -95,11 +141,11 @@ namespace SokingTreasure.OsSys.DAL
         /// <returns></returns>
         public static UserLogin VerifyUser(UserLogin model)
         {
-            string sql = $"select * from UserLogin where LoginName=@LoginName and LoginPhone=@LoginPhone and LoginEmail=@LoginEmail";
+            string sql = $"select * from UserLogin where LoginName=@LoginName and UserPhone=@UserPhone and UserEmail=@UserEmail";
             SqlParameter[] param = {
                  new SqlParameter("@LoginName",model.LoginName),
-                 new SqlParameter("@LoginPhone",model.LoginPhone),
-                 new SqlParameter("@LoginEmail",model.LoginEmail)
+                 new SqlParameter("@UserPhone",model.UserPhone),
+                 new SqlParameter("@UserEmail",model.UserEmail)
              };
             DataTable table = DbHelper.GetDataTable(sql, false, param);
             UserLogin ul = new UserLogin();
@@ -108,8 +154,8 @@ namespace SokingTreasure.OsSys.DAL
                 ul.Id = (int)item["Id"];
                 ul.LoginName = item["LoginName"].ToString();
                 ul.LoginPwd = item["LoginPwd"].ToString();
-                ul.LoginEmail = item["LoginEmail"].ToString();
-                ul.LoginPhone = item["LoginPhone"].ToString();
+                ul.UserEmail = item["UserEmail"].ToString();
+                ul.UserPhone = item["UserPhone"].ToString();
                 ul.StateId = (int)item["StateId"];
             }
             return ul;
@@ -121,7 +167,7 @@ namespace SokingTreasure.OsSys.DAL
         /// <returns></returns>
         public static bool InsertUser(UserLogin model)
         {
-            string sql = $"insert into UserLogin values('{model.LoginName}','{model.LoginPwd}','{model.LoginEmail}','{model.LoginPhone}',1)";
+            string sql = $"insert into UserLogin(LoginName,LoginPwd,UserEmail,UserPhone,LoginCount,UserRegistrTime,LastLoginTime,UserAge,StateId) values('{model.LoginName}','{model.LoginPwd}','{model.UserEmail}','{model.UserPhone}',0,'{DateTime.Now}','{DateTime.Now}',0,1)";
             if (DbHelper.ExecuteNonQuery(sql, false) >= 1)
             {
                 return true;

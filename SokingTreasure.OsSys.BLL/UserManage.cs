@@ -60,6 +60,10 @@ namespace SokingTreasure.OsSys.BLL
         {
             return UserCRUD.AlterUserPwd(userId, secrecyPwd);
         }
+        public static UserLogin GetUserByLoginName(string loginName)
+        {
+            return UserCRUD.GetUserByLoginName(loginName);
+        }
         /// <summary>
         /// 用户名是否已存在
         /// </summary>
@@ -68,6 +72,15 @@ namespace SokingTreasure.OsSys.BLL
         public static bool UserIfExist(string loginName)
         {
             return UserCRUD.UserIfExist(loginName);
+        }
+        /// <summary>
+        /// 更改用户信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static bool UpdateUser(UserLogin model)
+        {
+            return UserCRUD.UpdateUser(model);
         }
     }
 }

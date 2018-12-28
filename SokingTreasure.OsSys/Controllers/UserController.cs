@@ -150,8 +150,8 @@ namespace SokingTreasure.OsSys.Controllers
         {
             UserLogin model = new UserLogin()
             {
-                LoginEmail = verifyEmail,
-                LoginPhone = verifyPhone,
+                UserEmail = verifyEmail,
+                UserPhone = verifyPhone,
                 LoginName = verifyName
             };
             //判断验证码是否正确
@@ -196,7 +196,6 @@ namespace SokingTreasure.OsSys.Controllers
                 if (UserManage.AlterUserPwd(UserId, secrecyPwd))
                 {
                     return Json(new { success = 1 });
-                    //return RedirectToAction("HomePage", "Home");
                 }
                 else
                 {
@@ -207,6 +206,36 @@ namespace SokingTreasure.OsSys.Controllers
             {
                 return Json(new { success = 3 });
             }
+        }
+        /// <summary>
+        /// 个人信息页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult PersonalDetails()
+        {
+            if (this.User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            return RedirectToAction("Login", "User");
+        }
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetUserData()
+        {
+            string name = this.User.Identity.Name;
+            var data = UserManage.GetUserByLoginName(name);
+            return Json(new { data },JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult UpdateUserInfo(UserLogin model)
+        {
+            if (UserManage.UpdateUser(model))
+            {
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = false},JsonRequestBehavior.AllowGet);
         }
         /// <summary>
         /// 验证码
