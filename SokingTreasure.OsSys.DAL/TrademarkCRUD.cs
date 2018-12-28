@@ -56,5 +56,33 @@ namespace SokingTreasure.OsSys.DAL
                 }
             }
         }
+        /// <summary>
+        /// 添加商标信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static bool InsertTrademark(Trademark model)
+        {
+            string sql = $"insert into Trademark  values('{model.ApplyTime}','{model.TrademarkName}','{model.CommodityName}','{model.Registration}','{model.Category}','{model.ProcessState}')";
+            if (DbHelper.ExecuteNonQuery(sql,false) >= 1)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 修改商标信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static bool UpdateTrademark(Trademark model)
+        {
+            string sql = $"update Trademark set ApplyTime='{model.ApplyTime}',TrademarkName='{model.TrademarkName}',CommodityName='{model.CommodityName}',Registration='{model.Registration}',Category='{model.Category}',ProcessState='{model.ProcessState}' where id = {model.Id})";
+            if (DbHelper.ExecuteNonQuery(sql, false) >= 1)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
