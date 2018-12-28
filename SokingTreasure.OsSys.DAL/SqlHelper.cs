@@ -19,7 +19,7 @@ namespace DAL
         // 从配置文件App.config引用连接串
         // ConfigurationManager 读取配置文件的节点
         // ConnectionStrings["connString"] ： 在配置文件中的连接串名称
-        public static string SqlConnStr = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
+        public static string SqlConnStr = ConfigurationManager.ConnectionStrings["connStr"].ConnectionString;
      
         /// <summary>
         /// 执行select获取查询结果集

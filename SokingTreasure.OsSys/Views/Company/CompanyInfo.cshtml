@@ -2,6 +2,7 @@
 @{
     Layout = null;
     ViewBag.Title = "搜客宝-工商信息查询-公司企业注册信息查询-全国企业信用信息公示系统";
+    ViewBag.CompanyId = ViewData["companyId"];
 }
 
 <!DOCTYPE html>
@@ -24,19 +25,25 @@
     <script src="~/assets/js/ace-extra.min.js"></script>
     <script src="~/assets/js/jquery.min.js"></script>
     <script src="~/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/bootstrap/js/bootstrap-table.min.js"></script> 
-    <script src="~/bootstrap/js/bootstrap-table-zh-CN.min.js"></script>
-    <script src="~/bootstrap/js/bootstrap-table-export.js"></script>
+    @*文件上传Excel*@
+    @*<script src="~/Scripts/jQuery.FileUpload/jquery.iframe-transport.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/jquery.fileupload.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/jquery.fileupload-process.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/jquery.fileupload-validate.js"></script>
+    <link href="~/Content/jQuery.FileUpload/css/jquery.fileupload-ui.css" rel="stylesheet" />
+    <style type="text/css">
+        .bar {
+            height:18px;
+            background:green;
+        }
+    </style>*@
 </head>
 <body class="no-skin">
     <div id="navbar" class="navbar navbar-default">
-
         <div class="navbar-container" id="navbar-container">
             <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
                 <span class="icon-bar"></span>
-
                 <span class="icon-bar"></span>
-
                 <span class="icon-bar"></span>
             </button>
 
@@ -55,8 +62,8 @@
 
                     <li class="green">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>      
-                            
+                            <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
+                            暂无消息
                         </a>
 
                         <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
@@ -73,22 +80,14 @@
                     <li class="light-blue">
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                             <img class="nav-user-photo" src="~/assets/avatars/profile-pic.jpg" alt="Jason's Photo" />
-                            <span class="user-info">
-                                搜客宝!<br />
-                                欢迎您
+                            <span class="user-info">                          
+                                欢迎您<br/>
+                                @HttpContext.Current.User.Identity.Name
                             </span>
-
                             <i class="ace-icon fa fa-caret-down"></i>
                         </a>
 
                         <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                            <li>
-                                <a href="#">
-                                    <i class="ace-icon fa fa-cog"></i>
-                                    系统设置
-                                </a>
-                            </li>
-
                             <li>
                                 <a href="profile.html">
                                     <i class="ace-icon fa fa-user"></i>
@@ -101,16 +100,14 @@
                             <li>
                                 <a href="#">
                                     <i class="ace-icon fa fa-power-off"></i>
-                                    登出
+                                    退出登录
                                 </a>
                             </li>
                         </ul>
                     </li>
-
                     <!-- /section:basics/navbar.user_menu -->
                 </ul>
             </div>
-
             <!-- /section:basics/navbar.dropdown -->
         </div><!-- /.navbar-container -->
     </div>
@@ -120,14 +117,12 @@
 
         <!-- #section:basics/sidebar -->
         <div id="sidebar" class="sidebar responsive">
-
             <ul class="nav nav-list">
                 <li class="active">
                     <a href="index.html">
                         <i class="menu-icon fa fa-tachometer"></i>
                         <span class="menu-text"> 首页面 </span>
                     </a>
-
                     <b class="arrow"></b>
                 </li>
 
@@ -138,7 +133,6 @@
 
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
-
                     <b class="arrow"></b>
 
                     <ul class="submenu">
@@ -170,6 +164,20 @@
                             </a>
                             <b class="arrow"></b>
                         </li>
+                        <li class="">
+                            <a href="/Trademark/TrademarkShow">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                商标信息
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="/Copyright/CopyrightWorksShow">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                版权信息
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
                     </ul>
                 </li>
 
@@ -192,18 +200,15 @@
 
                             <b class="arrow"></b>
                         </li>
-
                         <li class="">
                             <a href="dropzone.html">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 文件上传
                             </a>
-
                             <b class="arrow"></b>
                         </li>
                     </ul>
                 </li>
-
                 <li class="">
                     <a href="/Home/Calendar">
                         <i class="menu-icon fa fa-calendar"></i>
@@ -211,7 +216,6 @@
                             日历
                         </span>
                     </a>
-
                     <b class="arrow"></b>
                 </li>
 
@@ -219,7 +223,6 @@
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-tag"></i>
                         <span class="menu-text"> 更多 </span>
-
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
 
@@ -272,11 +275,9 @@
                 </li>
             </ul><!-- /.nav-list -->
 
-
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
                 <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
             </div>
-
         </div>
 
         <!-- /section:basics/sidebar -->
@@ -317,11 +318,10 @@
                                 </button>
                                 企业信息展示
                                 <i class="fa fa-external-link bigger-110"></i>
-                            </div>     
-                            
-                            <a href="#" id="Derive" class="easyui-linkbutton" data-options="iconCls:'icon-search'">导出数据</a>
+                            </div>                                       
 
-                            <table id="tab" class="table table-hover"></table>                                         
+                            <table id="tab" class="table table-hover"></table> 
+                                                                    
                         </div>
                     </div>
                     
@@ -406,8 +406,8 @@
             }, {
                 title: '企业邮箱',
                 field: 'CompanyEmail',
-                align: 'center',
                 valign: 'middle',
+                align: 'center',
             }, {
                 title: '企业网址',
                 field: 'CompanyUrl',
@@ -437,39 +437,80 @@
             return result;
         }
 
-        $("#Derive").click(function () {
-            getDerive = "/Company/CompanyInfo";
-            initDataGrid("#Derive", colums, getDerive);
-            var date = new Date();
-            var year = date.getFullYear();
-            var month = date.getMonth();
-            var clock;
-            if (0 < month < 10) {
-                clock = year + "-";
-                clock += "0";
-                clock += month;
-            }
-            if (0 < month < 10)
-            {
-                clock = year + "-";
-                clock += "0";
-                clock += month;
-            }
-            if (month == 0)
-            {
-                year = date.getFullYear() - 1;
-                clock = year + "-";
-                clock += "12";
-            }
-            if ($("#OnDutyTime").datebox('getValue') != "") {
-                geturl13 = "/E:/ExcelDerive/" + $("#OnDutyTime").datebox('getValue') + "企业信息.xls";;
-                window.open(geturl13);
-            }
-            if ($("#OnDutyTime").datebox('getValue') == "") {
-                geturl13 = "/E:/ExcelDerive/" + $("#OnDutyTime").datebox('getValue') + "企业信息.xls";;
-                window.open(geturl13);
-            }
-        })
+        //$(function () {
+        //    $('#fileupload').fileupload({
+        //        url: "/Company/CompanyInfo",
+        //        dataType: "json",
+        //        replaceFileInput: false,//显示已选择文件文件名(必须)
+        //        progressall: function (e, data) {
+        //            var progress = parseInt(data.loaded / data.total * 100, 10);
+        //            $('#progress .bar').css('width', progress + '%');
+        //        },
+        //        add: function (e, data) {
+        //            var fileType = data.files[0].name.split('.').pop();
+        //            var acceptFileTypes = /xls|xlsx$/i;
+        //            if (!acceptFileTypes.test(fileType)) {
+        //                $("#startBtn").hide();//隐藏上传按钮
+        //                alert("不支持的文件类型，仅支持EXCEL文件");
+        //                return;
+        //            }
+
+        //            //判断文件大小，此例限制为：1mb：
+        //            var size = data.files[0].size;
+        //            size = (size / 1024).toFixed(2);//文件大小单位kb
+        //            var maxFileSize = 1024;//1mb=1024kb
+        //            if (size > maxFileSize) {
+        //                $("#startBtn").hide();//隐藏上传按钮
+        //                alert("文件大小：" + size + "KB,超过最大限制：" + maxFileSize + "KB");
+        //                return;
+        //            }
+        //            $("#startBtn").show();   //显示上传按钮
+
+        //            //点击上传按钮开始上传
+        //            data.context = $('#startBtn').click(function () {
+        //                data.context = $('<p/>').text('Uploading...').replaceAll($(this));
+        //                data.submit();
+        //            });
+        //        },
+
+        //        done: function (e, data) {
+        //            data.context = $('<p/>').text("文件上传成功!").replaceAll($(this));
+        //            $("#tab").empty();
+        //            $('#tab').append("<tr><th>企业名称</th><th>企业电话</th><th>企业邮箱</th><th>企业网址</th></tr>");
+        //            $.ajax({
+        //                type: "GET",
+        //                url: "/Company/CompanyInfo",
+        //                data: {},
+        //                dataType: "json",
+        //                success: function (result) {
+        //                    var html = '';
+        //                    for (var i = 0; i < result.length; i++) {
+        //                        html += '<tr>';
+        //                        html += '<td>' + result[i].no + '</td>';
+        //                        html += '<td>' + result[i].title + '</td>';
+        //                        html += '<td>' + result[i].note + '</td>';
+        //                        html += '</tr>';
+        //                    }
+        //                    $('#tab').append(html);
+        //                }
+        //            });
+        //        },
+        //        change: function (e, data) {
+        //            if (data.files.length > 1) {
+        //                $("#startBtn").hide();
+        //                alert("只能选择一个文件");
+        //                return false;
+        //            }
+        //        },
+        //        drop: function (e, data) {
+        //            if (data.files.length > 1) {
+        //                $("#startBtn").hide();
+        //                alert("只能选择一个文件");
+        //                return false;
+        //            }
+        //        }
+        //    });
+        //});
     </script>
 
 </body>

@@ -12,6 +12,11 @@ namespace SokingTreasure.OsSys.Models
     public class CompanyInfo : EntityBase
     {
         /// <summary>
+        /// 序号
+        /// </summary>
+        public string NumberId { get; set; }
+
+        /// <summary>
         /// 企业编号
         /// </summary>
         public int CompanyId { get; set; }
