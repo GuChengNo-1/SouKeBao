@@ -18,7 +18,7 @@ namespace SokingTreasure.OsSys.DAL
     {
         CompanyInfo company = new CompanyInfo();
 
-        readonly string connString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
+        private static string connStr = ConfigurationManager.ConnectionStrings["connStr"].ConnectionString;
 
         /// <summary>
         /// 企业信息初始化加载
@@ -29,9 +29,39 @@ namespace SokingTreasure.OsSys.DAL
         }
 
         /// <summary>
-        /// 判断是否有重复的企业编号存在
+        /// 根据企业名称查询企业信息
         /// </summary>
-        public int FindCompanyId(int CompanyId)
+        public static DataTable GetCompanyNameByWhere(int PageIndex, int PageSize, string companyName, out int counts)
+        {
+            int count = 0;
+            string sql = "proc_company_Paging";
+            SqlParameter[] prms = {
+                new SqlParameter("@PageIndex",PageIndex),
+                new SqlParameter("@PageSize",PageSize),
+                new SqlParameter("@companyName",companyName),
+                new SqlParameter("@count",count)
+            };
+            prms[3].Direction = ParameterDirection.Output;
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddRange(prms);
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    da.SelectCommand = cmd;
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                    counts = (int)cmd.Parameters[3].Value;
+                    return ds.Tables[0];
+                }
+            }
+        }
+
+         /// <summary>
+         /// 判断是否有重复的企业编号存在
+         /// </summary>
+         public int FindCompanyId(int CompanyId)
         {
             string sql = "select count(*) from CompanyInfo where CompanyId=@Cid";
             SqlParameter[] pars = {

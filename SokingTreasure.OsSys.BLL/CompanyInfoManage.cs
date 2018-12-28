@@ -60,5 +60,18 @@ namespace SokingTreasure.OsSys.BLL
             return service.EditCompanyInfo(company) == 1;
         }
 
+        /// <summary>
+        /// 根据企业名称查询企业信息
+        /// </summary>
+        /// <param name="PageIndex"></param>
+        /// <param name="PageSize"></param>
+        /// <param name="companyName"></param>
+        /// <param name="counts"></param>
+        /// <returns></returns>
+        public static DataTable GetCompanyNameByWhere(int PageIndex, int PageSize, string companyName, out int counts)
+        {
+            return CompanyInfoService.GetCompanyNameByWhere(PageIndex, PageSize, companyName, out counts);
+        }
+
     }
 }

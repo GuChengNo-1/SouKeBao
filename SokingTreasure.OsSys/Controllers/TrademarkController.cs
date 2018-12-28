@@ -33,6 +33,7 @@ namespace SokingTreasure.OsSys.Controllers
         /// <returns></returns>
         public ActionResult TrademarkListShow(int index, int limit)
         {
+            
             //查询条件（企业名称）
             var companyName = Request.Params["companyName"] == "" ? null : Request.Params["companyName"];
             //查询条件（申请日期开始）
