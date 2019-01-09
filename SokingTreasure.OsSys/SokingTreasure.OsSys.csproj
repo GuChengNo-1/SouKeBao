@@ -933,6 +933,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Json\data1.json" />
     <Content Include="DownExcel1.ashx" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
@@ -944,7 +945,6 @@
     <Content Include="Scripts\jigsaw.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
-    <Content Include="Scripts\jquery-ui-1.9.0.js" />
     <Content Include="Scripts\jquery-ui-1.9.0.min.js" />
     <Content Include="Scripts\jQuery.FileUpload\cors\jquery.postmessage-transport.js" />
     <Content Include="Scripts\jQuery.FileUpload\cors\jquery.xdr-transport.js" />
@@ -1007,6 +1007,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Trademark\TrademarkShow.cshtml" />
     <Content Include="Views\Company\CompanyShow.cshtml" />
+    <Content Include="Views\User\PersonalDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

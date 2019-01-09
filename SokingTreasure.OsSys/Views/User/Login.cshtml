@@ -272,7 +272,7 @@
                         regexEmail = /^([A-Za-z0-9_\-\.])+@@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
                         regexPhone = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
                     var formlogin = { LoginName: $("#LoginName").val(), LoginPwd: $("#LoginPwd").val(), LoginCode: $(".LoginCode").val() },
-                        formsignin = { LoginEmail: $("#LoginEmail").val(), LoginPhone: $("#LoginPhone").val(), LoginName: $("#LoginName").val(), LoginPwd: $("#LoginPwd").val(), ConfirmPwd: $("#ConfirmPwd").val(), LoginCode: $(".LoginCode").val() };
+                        formsignin = { UserEmail: $("#LoginEmail").val(), UserPhone: $("#LoginPhone").val(), LoginName: $("#LoginName").val(), LoginPwd: $("#LoginPwd").val(), ConfirmPwd: $("#ConfirmPwd").val(), LoginCode: $(".LoginCode").val() };
                     if ($("#form-btn-login").attr("data-op") == "0") {
                         //记住用户
                         if ($(".rber-me").get(0).checked) {
@@ -321,11 +321,11 @@
                         }
                     } else if ($("#form-btn-login").attr("data-op") == "1") {//新用户注册
                         //验证用户输入的信息是否正确
-                        if (!regexEmail.test(formsignin.LoginEmail)) {
+                        if (!regexEmail.test(formsignin.UserEmail)) {
                             layer.msg("请输入正确的邮箱", { icon: 7, time: 2000, shade: 0.4 });
                             return;
                         }
-                        if (!regexPhone.test(formsignin.LoginPhone)) {
+                        if (!regexPhone.test(formsignin.UserPhone)) {
                             layer.msg("请输入正确的手机号码", { icon: 7, time: 2000, shade: 0.4 });
                             return;
                         }

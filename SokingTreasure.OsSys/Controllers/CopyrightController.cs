@@ -65,5 +65,39 @@ namespace SokingTreasure.OsSys.Controllers
             }
             return Json(new { code = 0, msg = "", tatol = count, data = copyrightList.ToList() }, JsonRequestBehavior.AllowGet);
         }
+        #region 企业作品信息导出
+        public ActionResult CopyrightDown()
+        {
+            DataTable MyDt = new DataTable();
+            DataColumn dc = new DataColumn();
+            dc = MyDt.Columns.Add("序号", typeof(string));
+            dc = MyDt.Columns.Add("企业名称", typeof(string));
+            dc = MyDt.Columns.Add("联系人", typeof(string));
+            dc = MyDt.Columns.Add("联系电话", typeof(string));
+            try
+            {
+                foreach (DataRow item in table.Rows)
+                {
+                    DataRow dr = MyDt.NewRow();
+                    dr["序号"] = item["NumberId"].ToString();
+                    dr["企业名称"] = item["CompanyName"].ToString();
+                    dr["联系人"] = item["LegalRepresentative"].ToString();
+                    dr["联系电话"] = item["CompanyPhone"].ToString();
+                    MyDt.Rows.Add(dr);
+                }
+                IWorkbook workbook = ExcelHelper.DataTableToExcel(MyDt);
+                string path = Server.MapPath("/File/导出.xlsx");
+                FileStream fs = new FileStream(path, FileMode.Create);
+                workbook.Write(fs);
+                return File(path, "application/ms-excel", "企业信息.xlsx");
+            }
+            catch (Exception ex)
+            {
+                return Json(new { suses = false }, JsonRequestBehavior.AllowGet);
+                throw ex;
+            }
+        }
+        #endregion 企业作品信息导出
+
     }
 }
