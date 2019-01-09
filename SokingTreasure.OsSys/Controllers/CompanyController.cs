@@ -30,12 +30,12 @@ namespace SokingTreasure.OsSys.Controllers
         /// 企业信息数据接口
         /// </summary>
         /// <returns></returns>
-        public ActionResult CompanyInfo(int index,int limit)
+        public ActionResult CompanyInfoShow(int index, int limit)
         {
             //查询条件(企业名称)
             var companyName = Request.Params["companyName"] == "" ? null : Request.Params["companyName"];
             int count;
-            DataTable table = CompanyInfoManage.GetCompanyNameByWhere(index, limit, out count);
+            DataTable table = CompanyInfoManage.GetCompanyNameByWhere(index, limit,companyName, out count);
             List<CompanyInfo> companyList = new List<Models.CompanyInfo>();
             foreach (DataRow reader in table.Rows)
             {
@@ -48,9 +48,9 @@ namespace SokingTreasure.OsSys.Controllers
                 cf.CompanyEmail = reader["CompanyEmail"].ToString();
                 cf.CompanyUrl = reader["CompanyUrl"].ToString();
                 cf.CompanyProfile = reader["CompanyProfile"].ToString();
-                cf.
+                companyList.Add(cf);
             }
-
+            return Json(new { code = 0, msg = "", tatol = count, data = companyList.ToList() }, JsonRequestBehavior.AllowGet);
         }
 
 

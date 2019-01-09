@@ -157,16 +157,16 @@ namespace SokingTreasure.OsSys.DAL
         /// </summary>
         /// <param name="CompanyId"></param>
         /// <returns></returns>
-        public int DelCompanyInfo(int CompanyId)
-        {
-            using (SqlConnection conn = new SqlConnection(connString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("delete from CompanyInfo where CompanyId=@Cid", conn);
-                cmd.Parameters.AddWithValue("@Cid", CompanyId);
-                return cmd.ExecuteNonQuery();
-            }
-        }
+        //public int DelCompanyInfo(int CompanyId)
+        //{
+        //    using (SqlConnection conn = new SqlConnection(connString))
+        //    {
+        //        conn.Open();
+        //        SqlCommand cmd = new SqlCommand("delete from CompanyInfo where CompanyId=@Cid", conn);
+        //        cmd.Parameters.AddWithValue("@Cid", CompanyId);
+        //        return cmd.ExecuteNonQuery();
+        //    }
+        //}
 
     }
 }

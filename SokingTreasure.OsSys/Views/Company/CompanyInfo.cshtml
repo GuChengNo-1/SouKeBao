@@ -345,10 +345,10 @@
     <!-- basic scripts -->
     <!--[if !IE]> -->
     <script type="text/javascript">
-        window.jQuery || document.write("<script src='~/assets/js/jquery.min.js'>" + "<" + "/script>");
+        window.jQuery || document.write("<script src='/assets/js/jquery.min.js'>" + "<" + "/script>");
     </script>
     <script type="text/javascript">
-        if ('ontouchstart' in document.documentElement) document.write("<script src='~/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+        if ('ontouchstart' in document.documentElement) document.write("<script src='/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
     </script>
     <script src="~/assets/js/bootstrap.min.js"></script>
 
@@ -358,9 +358,9 @@
     <script src="~/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
     <script src="~/assets/js/ace-elements.min.js"></script>
     <script src="~/assets/js/ace.min.js"></script>
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         $('#tab').bootstrapTable({
-            url: '/Json/data1.json',    //请求路径
+            url: 'CompanyInfoShow?index=1&&limit=10',    //请求路径
             queryParams: "queryParams",
             toolbar: "#toolbar",
             sidePagination: "true",      //页码
@@ -427,7 +427,6 @@
                 formatter: actionFormatter,
             }]
         });
-
         function actionFormatter(value, row, index) {
             var id = value;
             var result = "";
@@ -436,82 +435,155 @@
             result += "<a href='javascript:;' class='btn btn-xs red' onclick=\"DeleteByIds('" + id + "')\"title='删除'><span class='glyphicon glyphicon-remove'></span></a>";
             return result;
         }
-
-        //$(function () {
-        //    $('#fileupload').fileupload({
-        //        url: "/Company/CompanyInfo",
-        //        dataType: "json",
-        //        replaceFileInput: false,//显示已选择文件文件名(必须)
-        //        progressall: function (e, data) {
-        //            var progress = parseInt(data.loaded / data.total * 100, 10);
-        //            $('#progress .bar').css('width', progress + '%');
-        //        },
-        //        add: function (e, data) {
-        //            var fileType = data.files[0].name.split('.').pop();
-        //            var acceptFileTypes = /xls|xlsx$/i;
-        //            if (!acceptFileTypes.test(fileType)) {
-        //                $("#startBtn").hide();//隐藏上传按钮
-        //                alert("不支持的文件类型，仅支持EXCEL文件");
-        //                return;
-        //            }
-
-        //            //判断文件大小，此例限制为：1mb：
-        //            var size = data.files[0].size;
-        //            size = (size / 1024).toFixed(2);//文件大小单位kb
-        //            var maxFileSize = 1024;//1mb=1024kb
-        //            if (size > maxFileSize) {
-        //                $("#startBtn").hide();//隐藏上传按钮
-        //                alert("文件大小：" + size + "KB,超过最大限制：" + maxFileSize + "KB");
-        //                return;
-        //            }
-        //            $("#startBtn").show();   //显示上传按钮
-
-        //            //点击上传按钮开始上传
-        //            data.context = $('#startBtn').click(function () {
-        //                data.context = $('<p/>').text('Uploading...').replaceAll($(this));
-        //                data.submit();
-        //            });
-        //        },
-
-        //        done: function (e, data) {
-        //            data.context = $('<p/>').text("文件上传成功!").replaceAll($(this));
-        //            $("#tab").empty();
-        //            $('#tab').append("<tr><th>企业名称</th><th>企业电话</th><th>企业邮箱</th><th>企业网址</th></tr>");
-        //            $.ajax({
-        //                type: "GET",
-        //                url: "/Company/CompanyInfo",
-        //                data: {},
-        //                dataType: "json",
-        //                success: function (result) {
-        //                    var html = '';
-        //                    for (var i = 0; i < result.length; i++) {
-        //                        html += '<tr>';
-        //                        html += '<td>' + result[i].no + '</td>';
-        //                        html += '<td>' + result[i].title + '</td>';
-        //                        html += '<td>' + result[i].note + '</td>';
-        //                        html += '</tr>';
-        //                    }
-        //                    $('#tab').append(html);
-        //                }
-        //            });
-        //        },
-        //        change: function (e, data) {
-        //            if (data.files.length > 1) {
-        //                $("#startBtn").hide();
-        //                alert("只能选择一个文件");
-        //                return false;
-        //            }
-        //        },
-        //        drop: function (e, data) {
-        //            if (data.files.length > 1) {
-        //                $("#startBtn").hide();
-        //                alert("只能选择一个文件");
-        //                return false;
-        //            }
-        //        }
-        //    });
-        //});
+    </script>*@
+    <script>
+         $(function () {
+             //导航栏
+             layui.use('element', function () {
+                 var element = layui.element;
+             });
+             //导航栏
+             var limitcount = 10;
+             var curnum = 1;
+             //加载table组件
+             function productsearch(start, limit) {
+                 layui.use(['table', 'laypage'], function () {
+                     var table = layui.table,
+                         laypage = layui.laypage;
+                     var index = layer.load(2); //添加laoding,0-2两种方式
+                     //第一个实例
+                     table.render({
+                         elem: '#tab'
+                         , url: '/Company/CompanyInfoShow?index=' + curnum + "&&limit=" + limitcount//数据接口
+                         , id: 'trademark'
+                         , loading: true
+                         , defaultToolbar: ['filter', 'print', 'exports']
+                         , cols: [[
+                             { field: 'NumberId', title: '序号', width: 80, sort: true, fixed: 'left', unresize: true }
+                             , { field: 'CompanyName', title: '企业名称', width: 260, unresize: true, templet: '#titleTpl2' }
+                             , { field: 'ApplyTime', title: '申请日期', width: 120, unresize: true, templet: '#titleTpl1' }
+                             , { field: 'TrademarkName', title: '商标', width: 80, unresize: true, templet: '#titleTpl3' }
+                             , { field: 'CommodityName', title: '商标名称', width: 150, unresize: true }
+                             , { field: 'Registration', title: '注册号', width: 200 }
+                             , { field: 'Category', title: '类别', width: 240 }
+                             , { field: 'ProcessState', title: '流程状态', width: 240, unresize: true }
+                             , { field: 'Right', title: '操作', width: 120, toolbar: '#barDemo' }
+                         ]]
+                         , page: false
+                         , done: function (res) {
+                             laypage.render({
+                                 elem: 'layui-paging',
+                                 count: res.tatol,
+                                 curr: curnum,
+                                 limit: limitcount,
+                                 layout: ['prev', 'page', 'next', 'skip', 'count', 'limit'],
+                                 jump: function (obj, first) {
+                                     if (!first) {
+                                         curnum = obj.curr;
+                                         limitcount = obj.limit;
+                                         productsearch(curnum, limitcount);
+                                     }
+                                     layer.close(index);    //返回数据关闭loading
+                                 }
+                             });
+                         }
+                     });
+                     //查询客户
+                     $('#trademark-where-btn').click(function () {
+                         table.reload('trademark', {
+                             where: { //设定异步数据接口的额外参数，任意设
+                                 companyName: $('#where-companyName').val(),
+                                 applyTimeBegin: $('#where-applyTime-begin').val(),
+                                 applyTimeOver: $('#where-applyTime-over').val(),
+                                 commodityName: $('#where-commodityName').val(),
+                             },
+                             page: false
+                             , done: function (res) {
+                                 laypage.render({
+                                     elem: 'layui-paging',
+                                     count: res.tatol,
+                                     curr: curnum,
+                                     limit: limitcount,
+                                     layout: ['prev', 'page', 'next', 'skip', 'count', 'limit'],
+                                     jump: function (obj, first) {
+                                         if (!first) {
+                                             curnum = obj.curr;
+                                             console.log(curnum);
+                                             limitcount = obj.limit;
+                                             productsearch(curnum, limitcount);
+                                         }
+                                         layer.close(index);    //返回数据关闭loading
+                                     }
+                                 });
+                             }
+                         });
+                     })
+                     //添加用户页面
+                     layui.use('layer', function () {
+                         var layer = layui.layer;
+                         $('#addCustomer-btn').click(function () {
+                             layer.open({
+                                 type: 2,
+                                 title: '添加客户',
+                                 content: '/Customer/CustomerAddPage/',
+                                 area: ['700px', '450px']
+                             })
+                         })
+                     })
+                     //监听工具条
+                     table.on('tool(test)', function (obj) {
+                         var data = obj.data;
+                         var layEvent = obj.event;
+                         var tr = obj.tr;
+                         if (layEvent == 'edit') {
+                             layer.open({
+                                 type: 2,
+                                 title: '编辑客户',
+                                 content: '/Customer/CustomerEditPage?Id=' + data.Id,
+                                 area: ['700px', '450px']
+                             })
+                         }
+                         if (layEvent == 'del') {
+                             layer.confirm('真的删除行么', function (index) {
+                                 obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                                 layer.close(index);
+                                 //向服务端发送删除指令
+                                 layui.$.post(
+                                     '/Customer/DeleteCustomer?Id=' + data.Id,
+                                     { id: data.Id },
+                                     function (data, status) {
+                                         if (data.msg == 'ok') {
+                                             layer.msg('删除成功!');
+                                         }
+                                         //else {
+                                         //    layer.msg('出现未知错误!');
+                                         //}
+                                     }
+                                 )
+                             });
+                         }
+                     });
+                 });
+             }
+             productsearch(curnum, limitcount);
+         })
     </script>
-
+    <script type="text/html" id="titleTpl1">
+        {{fmtDate(d.ApplyTime)}}
+    </script>
+    <script type="text/html" id="titleTpl2">
+        <div>
+            <a href="/Company/CompanyShow?id={{d.CompanyId}}">{{d.CompanyName}}</a>
+        </div>
+    </script>
+    <script type="text/html" id="titleTpl3">
+        <div>
+            <img src="../images/sokingIcon/{{d.TrademarkName}}" style="width:100%;height:100%;" />
+        </div>
+    </script>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
 </body>
 </html>

@@ -33,13 +33,23 @@ namespace SokingTreasure.OsSys.Controllers
         /// <returns></returns>
         public ActionResult TrademarkListShow(int index, int limit)
         {
-            
+            //查询条件（申请日期开始）
+            var applyTimeBegin = Request.Params["applyTimeBegin"];
+            //查询条件（申请日期结束）
+            var applyTimeOver = Request.Params["applyTimeOver"];
+            if (applyTimeBegin == "" || applyTimeOver == "")
+            {
+                applyTimeBegin = Request.Params["applyTimeBegin"] == "" ? "1800-01-01" : Request.Params["applyTimeBegin"];
+                applyTimeOver = Request.Params["applyTimeOver"] == "" ? "2050-01-01" : Request.Params["applyTimeOver"];
+            }
+            else if(applyTimeBegin == null || applyTimeOver == null)
+            {
+                applyTimeBegin = Request.Params["applyTimeBegin"] == null ? "1800-01-01" : Request.Params["applyTimeBegin"];
+                applyTimeOver = Request.Params["applyTimeOver"] == null ? "2050-01-01" : Request.Params["applyTimeOver"];
+            }
             //查询条件（企业名称）
             var companyName = Request.Params["companyName"] == "" ? null : Request.Params["companyName"];
-            //查询条件（申请日期开始）
-            var applyTimeBegin = Request.Params["applyTimeBegin"] == "" ? null : Request.Params["applyTimeBegin"];
-            //查询条件（申请日期结束）
-            var applyTimeOver = Request.Params["applyTimeOver"] == "" ? null : Request.Params["applyTimeOver"];
+
             //查询条件（商品名称）
             var commodityName = Request.Params["commodityName"] == "" ? null : Request.Params["commodityName"];
             int count;

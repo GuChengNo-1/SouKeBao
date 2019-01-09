@@ -545,7 +545,7 @@
                                         
                                         <div id="friends" class="tab-pane">
                                             <div class="profile-users clearfix">
-                                                <form class="form-horizontal">
+                                                <form class="form-horizontal layui-form">
                                                     <div class="form-group">
                                                         <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
                                                         <div class="col-sm-4">
@@ -561,12 +561,14 @@
                                                     <div class="form-group">
                                                         <label for="inputPassword3" class="col-sm-2 control-label">性别</label>
                                                         <div class="col-sm-4">
-                                                            <label class="radio-inline">
+                                                            @*<label class="radio-inline">
                                                                 <input type="radio" name="form-UserSex" id="form-UserSex" value="男" checked> 男
-                                                            </label>
-                                                            <label class="radio-inline">
                                                                 <input type="radio" name="form-UserSex" value="女"> 女
-                                                            </label>
+                                                            </label>*@
+                                                            <div class="layui-inline">
+                                                                    <input name="form-UserSex" id="form-UserSex" value="男" title="男" checked="checked" type="radio">
+                                                                    <input name="form-UserSex" value="女" title="女" type="radio">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -914,16 +916,17 @@
                 success: function (data) {
                     $("#form-UserRealName").val(data.data.UserRealName);
                     $("#form-UserAge").val(data.data.UserAge);
-                    data.data.UserSex == "男" ? $("input[name='form-UserSex'][value='男']").attr("checked", true) : $("input[name='form-UserSex'][value='男']").attr("checked", false);
+                    data.data.UserSex == "男" ? $("input[name='form-UserSex'][value='男']").attr("checked", true) : $("input[name='form-UserSex'][value='女']").attr("checked", true);
                     $("#form-UserAddress").val(data.data.UserAddress);
                     $("#form-UserEmail").val(data.data.UserEmail);
                     $("#form-UserPhone").val(data.data.UserPhone);
                 }
             })
             $("#user-confirm-btn").click(function () {
+                var sex = $('#form-UserSex:checked').val();
                 var userData = {
                     UserAddress: $("#form-UserAddress").val(), UserRealName: $("#form-UserRealName").val(), UserAge: $("#form-UserAge").val(), Id:userId,
-                    UserEmail: $("#form-UserEmail").val(), UserPhone: $("#form-UserPhone").val(), UserSex: $("#form-UserSex").val() == "男" ? "男" : "女"
+                    UserEmail: $("#form-UserEmail").val(), UserPhone: $("#form-UserPhone").val(), UserSex: sex == "男" ? "男" : "女"
                 };
                 console.log(userData);
                 if (!regexEmail.test(userData.UserEmail)) {
@@ -941,7 +944,7 @@
                     dataType:"json",
                     success: function (data) {
                         if (data.success) {
-                            layer.msg("修改成功，赶紧去查看吧", { icon: 6, time: 2000, shade: 0.4 });
+                            layer.msg("修改成功，赶紧刷新查看吧", { icon: 6, time: 2000, shade: 0.4 });
                         }
                         else if (data.success == false) {
                             layer.msg("修改失败", { icon: 5, time: 2000, shade: 0.4 });
