@@ -49,6 +49,7 @@
     <Compile Include="CompanyInfoManage.cs" />
     <Compile Include="CopyrightManage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShareholderManage.cs" />
     <Compile Include="TrademarkManage.cs" />
     <Compile Include="UserManage.cs" />
   </ItemGroup>

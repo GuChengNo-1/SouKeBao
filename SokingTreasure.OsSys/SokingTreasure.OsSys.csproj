@@ -172,6 +172,7 @@
     <Compile Include="Controllers\CopyrightController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaderController.cs" />
+    <Compile Include="Controllers\ShareholderController.cs" />
     <Compile Include="Controllers\TrademarkController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DownExcel1.ashx.cs">
@@ -1008,6 +1009,7 @@
     <Content Include="Views\Trademark\TrademarkShow.cshtml" />
     <Content Include="Views\Company\CompanyShow.cshtml" />
     <Content Include="Views\User\PersonalDetails.cshtml" />
+    <Content Include="Views\Shareholder\ShareholderShow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

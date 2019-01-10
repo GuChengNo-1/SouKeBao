@@ -12,6 +12,10 @@ namespace SokingTreasure.OsSys.Models
     public class Shareholder:EntityBase
     {
         /// <summary>
+        /// 序号
+        /// </summary>
+        public string NumberId { get; set; }
+        /// <summary>
         /// 股东（发起人）
         /// </summary>
         public string ShareholderName { get; set; }

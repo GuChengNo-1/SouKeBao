@@ -14,7 +14,7 @@ namespace SokingTreasure.OsSys.BLL
     /// </summary>
     public class CompanyInfoManage
     {
-        CompanyInfoService service = new CompanyInfoService();
+        CompanyInfoCRUD service = new CompanyInfoCRUD();
 
         /// <summary>
         /// 企业信息初始化加载
@@ -47,7 +47,7 @@ namespace SokingTreasure.OsSys.BLL
         /// <returns></returns>
         public static CompanyAndBusiness GetCompanyAndBusinessById(string id)
         {
-            return CompanyInfoService.GetCompanyAndBusinessById(id);
+            return CompanyInfoCRUD.GetCompanyAndBusinessById(id);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace SokingTreasure.OsSys.BLL
         /// <returns></returns>
         public static DataTable GetCompanyNameByWhere(int PageIndex, int PageSize, string companyName, out int counts)
         {
-            return CompanyInfoService.GetCompanyNameByWhere(PageIndex, PageSize, companyName, out counts);
+            return CompanyInfoCRUD.GetCompanyNameByWhere(PageIndex, PageSize, companyName, out counts);
         }
 
     }

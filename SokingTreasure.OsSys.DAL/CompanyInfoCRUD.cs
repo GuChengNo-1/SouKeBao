@@ -14,7 +14,7 @@ namespace SokingTreasure.OsSys.DAL
     /// <summary>
     /// 企业信息数据访问类
     /// </summary>
-    public class CompanyInfoService
+    public class CompanyInfoCRUD
     {
         CompanyInfo company = new CompanyInfo();
 

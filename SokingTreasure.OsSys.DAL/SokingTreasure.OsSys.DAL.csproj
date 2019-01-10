@@ -58,10 +58,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompanyInfoService.cs" />
+    <Compile Include="CompanyInfoCRUD.cs" />
     <Compile Include="CopyrightCRUD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DbHelper.cs" />
+    <Compile Include="ShareholderCRUD.cs" />
     <Compile Include="SqlHelper.cs" />
     <Compile Include="TrademarkCRUD.cs" />
     <Compile Include="UserCRUD.cs" />

@@ -11,11 +11,13 @@ using System.Collections;
 using SokingTreasure.OsSys.BLL;
 using SokingTreasure.OsSys.Models;
 using SokingTreasure.OsSys.DAL;
+using SokingTreasure.OsSys.Common;
 
 namespace SokingTreasure.OsSys.Controllers
 {
     public class CompanyController : Controller
     {
+        private static DataTable table;
 
         /// <summary>
         /// 企业信息
@@ -40,7 +42,7 @@ namespace SokingTreasure.OsSys.Controllers
             //查询条件（企业名称）
             var companyName = Request.Params["companyName"] == "" ? null : Request.Params["companyName"];
             int count;
-            DataTable table = CompanyInfoManage.GetCompanyNameByWhere(index, limit, companyName, out count);
+            table = CompanyInfoManage.GetCompanyNameByWhere(index, limit, companyName, out count);
             List<CompanyInfo> companyList = new List<Models.CompanyInfo>();
             foreach (DataRow reader in table.Rows)
             {
@@ -84,7 +86,41 @@ namespace SokingTreasure.OsSys.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-
+        /// <summary>
+        /// 企业信息导出数据
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult CompanyDown()
+        {
+            DataTable dt = new DataTable();
+            DataColumn dc = new DataColumn();
+            dc = dt.Columns.Add("序号", typeof(string));
+            dc = dt.Columns.Add("企业名称", typeof(string));
+            dc = dt.Columns.Add("联系人", typeof(string));
+            dc = dt.Columns.Add("联系电话", typeof(string));
+            try
+            {
+                foreach (DataRow item in table.Rows)
+                {
+                    DataRow dr = dt.NewRow();
+                    dr["序号"] = item["NumberId"].ToString();
+                    dr["企业名称"] = item["CompanyName"].ToString();
+                    dr["联系人"] = item["LegalRepresentative"].ToString();
+                    dr["联系电话"] = item["CompanyPhone"].ToString();
+                    dt.Rows.Add(dr);
+                }
+                IWorkbook workbook = ExcelHelper.DataTableToExcel(dt);
+                string path = Server.MapPath("/File/导出.xlsx");
+                FileStream fs = new FileStream(path, FileMode.Create);
+                workbook.Write(fs);
+                return File(path, "application/ms-excel", "企业信息.xlsx");
+            }
+            catch (Exception ex)
+            {
+                return Json(new { suces = false }, JsonRequestBehavior.AllowGet);
+                throw ex;
+            }
+        }
     }
 
 }

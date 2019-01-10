@@ -41,6 +41,7 @@
                 </a>
             </div>
 
+            <!-- #section:basics/navbar.dropdown -->
             <div class="navbar-buttons navbar-header pull-right" role="navigation">
                 <ul class="nav ace-nav">
 
@@ -50,17 +51,9 @@
                         </a>
 
                         <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                            <li class="dropdown-content">
-                                <ul class="dropdown-menu dropdown-navbar">
-                                    <li>
-                                        <a href="#">
-                                            <img src="assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-                                            <span class="msg-body">
-
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
+                            <li class="dropdown-header">
+                                <i class="ace-icon fa fa-envelope-o"></i>
+                                暂无消息
                             </li>
 
                             <li class="dropdown-footer">
@@ -77,8 +70,8 @@
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                             <img class="nav-user-photo" src="~/assets/avatars/profile-pic.jpg" alt="Jason's Photo" />
                             <span class="user-info">
-                                搜客宝<br />
-                                欢迎您!
+                                欢迎您!<br />
+                                @HttpContext.Current.User.Identity.Name
                             </span>
 
                             <i class="ace-icon fa fa-caret-down"></i>
@@ -86,7 +79,7 @@
 
                         <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                             <li>
-                                <a href="">
+                                <a href="/User/PersonalDetails">
                                     <i class="ace-icon fa fa-user"></i>
                                     个人信息设置
                                 </a>
@@ -95,9 +88,9 @@
                             <li class="divider"></li>
 
                             <li>
-                                <a href="/User/Login">
+                                <a href="/Home/LogOff">
                                     <i class="ace-icon fa fa-power-off"></i>
-                                    登出
+                                    退出登录
                                 </a>
                             </li>
                         </ul>
@@ -149,7 +142,7 @@
                 </li>
 
                 <li class="">
-                    <a href="/Company/CompanyInfo" class="dropdown-toggle">
+                    <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-list"></i>
                         <span class="menu-text"> 企业管理 </span>
 
@@ -163,6 +156,30 @@
                             <a href="/Company/CompanyInfo">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 企业信息
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="/Trademark/TrademarkShow">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                商标信息
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="/Copyright/CopyrightWorksShow">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                版权信息
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="/Shareholder/ShareholderShow">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                股东信息
                             </a>
 
                             <b class="arrow"></b>
@@ -191,7 +208,7 @@
                         </li>
 
                         <li class="">
-                            <a href="dropzone.html">
+                            <a href="/Home/Inbox">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 文件上传
                             </a>
@@ -224,7 +241,7 @@
 
                     <ul class="submenu">
                         <li class="">
-                            <a href="profile.html">
+                            <a href="/User/PersonalDetails">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 用户信息
                             </a>
@@ -258,7 +275,7 @@
 
                     <ul class="submenu">
                         <li class="">
-                            <a href="faq.html">
+                            <a href="/Home/Inbox">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 帮助中心
                             </a>
@@ -471,6 +488,7 @@
                         <div class="footer-content">
                             <span class="bigger-120">
                                 上海谷程网络科技有限公司 &copy; 2019
+                                <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=Q3F2d3B1c3N3cHIDMjJtICwu" style="text-decoration:none;color:#FF5722;">联系我们</a>
                             </span>
                         </div>
 

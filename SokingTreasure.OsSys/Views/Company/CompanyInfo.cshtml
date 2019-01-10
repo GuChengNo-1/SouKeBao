@@ -14,25 +14,24 @@
     <title>@ViewBag.Title</title>
     <meta name="description" content="Restyling jQuery UI Widgets and Elements" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/bootstrap/css/bootstrap-table.min.css" />
-    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="~/assets/css/jquery-ui.min.css" />
-    <link rel="stylesheet" href="~/assets/css/datepicker.css" />
-    <link rel="stylesheet" href="~/assets/css/ui.jqgrid.css" />
-    <link rel="stylesheet" href="~/assets/css/ace-fonts.css" />
-    <link rel="stylesheet" href="~/assets/css/ace.min.css" id="main-ace-style" />
-    <script src="~/assets/js/ace-extra.min.js"></script>
-    <script src="~/assets/js/jquery.min.js"></script>
-    <script src="~/bootstrap/js/bootstrap.min.js"></script>
-
+    <link href="~/layui/css/layui.css" rel="stylesheet"/>
+    <link href="~/layui/css/layui.mobile.css" rel="stylesheet"/>
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="~/assets/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="~/assets/css/ace.min.css" rel="stylesheet"/>
+    <link href="~/assets/css/ace-skins.min.css" rel="stylesheet"/>
+    <link href="~/assets/css/ace-rtl.min.css" rel="stylesheet"/>
+    <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet">
 </head>
+
 <body class="no-skin">
     <div id="navbar" class="navbar navbar-default">
         <div class="navbar-container" id="navbar-container">
             <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
                 <span class="icon-bar"></span>
+
                 <span class="icon-bar"></span>
+                
                 <span class="icon-bar"></span>
             </button>
 
@@ -52,10 +51,14 @@
                     <li class="green">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-                            暂无消息
                         </a>
 
                         <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                            <li class="dropdown-header">
+                                <i class="ace-icon fa fa-envelope-o"></i>
+                                暂无消息
+                            </li>
+
                             <li class="dropdown-footer">
                                 <a href="/Home/Inbox">
                                     查看全部消息
@@ -78,7 +81,7 @@
 
                         <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                             <li>
-                                <a href="profile.html">
+                                <a href="/User/PersonalDetails">
                                     <i class="ace-icon fa fa-user"></i>
                                     个人信息设置
                                 </a>
@@ -87,7 +90,7 @@
                             <li class="divider"></li>
 
                             <li>
-                                <a href="#">
+                                <a href="/User/LogOff">
                                     <i class="ace-icon fa fa-power-off"></i>
                                     退出登录
                                 </a>
@@ -108,7 +111,7 @@
         <div id="sidebar" class="sidebar responsive">
             <ul class="nav nav-list">
                 <li class="active">
-                    <a href="index.html">
+                    <a href="/Home/HomePage">
                         <i class="menu-icon fa fa-tachometer"></i>
                         <span class="menu-text"> 首页面 </span>
                     </a>
@@ -167,6 +170,13 @@
                             </a>
                             <b class="arrow"></b>
                         </li>
+                        <li class="">
+                            <a href="/Shareholder/ShareholderShow">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                股东信息
+                            </a>
+                            <b class="arrow"></b>
+                        </li>
                     </ul>
                 </li>
 
@@ -219,11 +229,10 @@
 
                     <ul class="submenu">
                         <li class="">
-                            <a href="profile.html">
+                            <a href="/User/PersonalDetails">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 用户信息
                             </a>
-
                             <b class="arrow"></b>
                         </li>
 
@@ -232,7 +241,6 @@
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 登录注册
                             </a>
-
                             <b class="arrow"></b>
                         </li>
                     </ul>
@@ -253,7 +261,7 @@
 
                     <ul class="submenu">
                         <li class="">
-                            <a href="faq.html">
+                            <a href="/Home/Inbox">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 帮助中心
                             </a>
@@ -308,9 +316,34 @@
                                 企业信息展示
                                 <i class="fa fa-external-link bigger-110"></i>
                             </div>                                       
+                            <table width="100%" class="CSSearchTbl" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td class="left">企业名称：</td>
+                                    <td class="right"><input type="text" id="where-companyName" size="16"/></td>
+                                    <td class="right">
+                                        <a href="/Company/CompanyDown" class="btn btn-default">导出</a>
+                                    </td>
+                                    <td class="right" colspan="2">
+                                        <button id="company-where-btn" class="btn btn-primary pull-left col-sm-12 tbl-search" data-dismiss="model" >
+                                            开始搜索
+                                            <i class="ace-icon fa fa-search"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
 
-                            <table id="tab" class="table table-hover"></table> 
-                                                                    
+                            <div class="table-responsive">
+                                <table id="company-table" lay-filter="test" class="table table-striped table-bordered table-hover" data-toggle="table" data-url="data1.json"></table>
+                                <div id="layui-paging"></div>
+                                <div class="model-footer no-margin-top">
+                                    <ul class="pagination pull-right no-margin">
+                                        <li class="prev disabled">
+                                            <div id="layui-paging"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                                                                                         
                         </div>
                     </div>
                     
@@ -325,6 +358,7 @@
                 <div class="footer-content">
                     <span class="bigger-120">
                         上海谷程网络科技有限公司 &copy; 2019
+                        <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=Q3F2d3B1c3N3cHIDMjJtICwu" style="text-decoration:none;color:#FF5722;">联系我们</a>
                     </span>
                 </div>
 
@@ -334,10 +368,10 @@
     <!-- basic scripts -->
     <!--[if !IE]> -->
     <script type="text/javascript">
-        window.jQuery || document.write("<script src='/assets/js/jquery.min.js'>" + "<" + "/script>");
+        window.jQuery || document.write("<script src='~/assets/js/jquery.min.js'>" + "<" + "/script>");
     </script>
     <script type="text/javascript">
-        if ('ontouchstart' in document.documentElement) document.write("<script src='/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+        if ('ontouchstart' in document.documentElement) document.write("<script src='~/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
     </script>
     <script src="~/assets/js/bootstrap.min.js"></script>
 
@@ -347,84 +381,7 @@
     <script src="~/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
     <script src="~/assets/js/ace-elements.min.js"></script>
     <script src="~/assets/js/ace.min.js"></script>
-    @*<script type="text/javascript">
-        $('#tab').bootstrapTable({
-            url: 'CompanyInfoShow?index=1&&limit=10',    //请求路径
-            queryParams: "queryParams",
-            toolbar: "#toolbar",
-            sidePagination: "true",      //页码
-            striped: true,               //显示行间隔色
-            uniqueId: "CompanyId",       //默认主键列
-            pagination: true,            //是否分页
-            sortable: true,              //是否启用排序
-            pageNumber: "1",             //初始化加载第几页
-            pageSize: "10",              //单页记录数据
-            pageList:[10,25,50,100],
-            paginationPreText: '上一页',
-            paginationNextText: '下一页',
-            minimumCountColumns: "2",
-            showFooter: true,             //显示列脚
-            showRefresh: true,            //刷新按钮
-            showColumns: true,            //显示所有列
-            showToggle: true,             //是否显示详细视图和列表视图的切换按钮
-            cardView: false,               //显示详细视图
-            //列数据编辑
-            columns: [{
-                title: '序号',
-                field: 'CompanyId',
-                align: 'center',
-                valign: 'middle',
-            },
-            {
-                title: '企业名称',
-                field: 'CompanyName',
-                align: 'center',
-                valign: 'middle',
-            },
-            {
-                title: '法定代表人',
-                field: 'LegalRepresentative',
-                align: 'center',
-                valign: 'middle',
-            },
-            {
-                title: '企业电话',
-                field: 'CompanyPhone',
-                align: 'center',
-                valign: 'middle',
-            }, {
-                title: '企业邮箱',
-                field: 'CompanyEmail',
-                valign: 'middle',
-                align: 'center',
-            }, {
-                title: '企业网址',
-                field: 'CompanyUrl',
-                align: 'center',
-                valign: 'middle',
-            }, {
-                title: '企业简介',
-                field: 'CompanyProfile',
-                align: 'center',
-                valign: 'middle',
-            }, {
-                title: '操作',
-                field: 'CompanyId',
-                width: 120,
-                align: 'center',
-                valign: 'middle',
-                formatter: actionFormatter,
-            }]
-        });
-        function actionFormatter(value, row, index) {
-            var id = value;
-            var result = "";
-            result += "<a href='javascript:;' class='btn btn-xs green' onclick=\"EditViewById('" + id + "',view='view')\"title='查看'><span class='glyphicon glyphicon-search'></span></a>";
-            result += "<a href='javascript:;' class='btn btn-xs blue' onclick=\"EditViewById('" + id + "')\"title='编辑'><span class='glyphicon glyphicon-pencil'></span></a>";
-            result += "<a href='javascript:;' class='btn btn-xs red' onclick=\"DeleteByIds('" + id + "')\"title='删除'><span class='glyphicon glyphicon-remove'></span></a>";
-            return result;
-        }
-    </script>*@
+
     <script>
          $(function () {
              //导航栏
@@ -440,23 +397,21 @@
                      var table = layui.table,
                          laypage = layui.laypage;
                      var index = layer.load(2); //添加laoding,0-2两种方式
-                     //第一个实例
+                    
                      table.render({
                          elem: '#tab'
-                         , url: '/Company/CompanyInfoShow?index=' + curnum + "&&limit=" + limitcount//数据接口
-                         , id: 'trademark'
+                         , url: '/Company/CompanyInfoList?index=' + curnum + "&&limit=" + limitcount//数据接口
+                         , id: 'company'
                          , loading: true
                          , defaultToolbar: ['filter', 'print', 'exports']
                          , cols: [[
                              { field: 'NumberId', title: '序号', width: 80, sort: true, fixed: 'left', unresize: true }
                              , { field: 'CompanyName', title: '企业名称', width: 260, unresize: true, templet: '#titleTpl2' }
-                             , { field: 'ApplyTime', title: '申请日期', width: 120, unresize: true, templet: '#titleTpl1' }
-                             , { field: 'TrademarkName', title: '商标', width: 80, unresize: true, templet: '#titleTpl3' }
-                             , { field: 'CommodityName', title: '商标名称', width: 150, unresize: true }
-                             , { field: 'Registration', title: '注册号', width: 200 }
-                             , { field: 'Category', title: '类别', width: 240 }
-                             , { field: 'ProcessState', title: '流程状态', width: 240, unresize: true }
-                             , { field: 'Right', title: '操作', width: 120, toolbar: '#barDemo' }
+                             , { field: 'LegalRepresentative', title: '法定代表人', width: 120, unresize: true, templet: '#titleTpl1' }
+                             , { field: 'CompanyPhone', title: '企业电话', width: 150, unresize: true, templet: '#titleTpl3' }
+                             , { field: 'CompanyEmail', title: '企业邮箱', width: 150, unresize: true }
+                             , { field: 'CompanyUrl', title: '企业网址', width: 200 }
+                             , { field: 'CompanyProfile', title: '企业简介', width: 240 }
                          ]]
                          , page: false
                          , done: function (res) {
@@ -477,14 +432,11 @@
                              });
                          }
                      });
-                     //查询客户
-                     $('#trademark-where-btn').click(function () {
-                         table.reload('trademark', {
+                     //企业名称查询操作
+                     $('#company-where-btn').click(function () {
+                         table.reload('company', {
                              where: { //设定异步数据接口的额外参数，任意设
                                  companyName: $('#where-companyName').val(),
-                                 applyTimeBegin: $('#where-applyTime-begin').val(),
-                                 applyTimeOver: $('#where-applyTime-over').val(),
-                                 commodityName: $('#where-commodityName').val(),
                              },
                              page: false
                              , done: function (res) {
@@ -508,56 +460,56 @@
                          });
                      })
                      //添加用户页面
-                     layui.use('layer', function () {
-                         var layer = layui.layer;
-                         $('#addCustomer-btn').click(function () {
-                             layer.open({
-                                 type: 2,
-                                 title: '添加客户',
-                                 content: '/Customer/CustomerAddPage/',
-                                 area: ['700px', '450px']
-                             })
-                         })
-                     })
+                     //layui.use('layer', function () {
+                     //    var layer = layui.layer;
+                     //    $('#addCustomer-btn').click(function () {
+                     //        layer.open({
+                     //            type: 2,
+                     //            title: '添加客户',
+                     //            content: '/Customer/CustomerAddPage/',
+                     //            area: ['700px', '450px']
+                     //        })
+                     //    })
+                     //})
                      //监听工具条
-                     table.on('tool(test)', function (obj) {
-                         var data = obj.data;
-                         var layEvent = obj.event;
-                         var tr = obj.tr;
-                         if (layEvent == 'edit') {
-                             layer.open({
-                                 type: 2,
-                                 title: '编辑客户',
-                                 content: '/Customer/CustomerEditPage?Id=' + data.Id,
-                                 area: ['700px', '450px']
-                             })
-                         }
-                         if (layEvent == 'del') {
-                             layer.confirm('真的删除行么', function (index) {
-                                 obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-                                 layer.close(index);
-                                 //向服务端发送删除指令
-                                 layui.$.post(
-                                     '/Customer/DeleteCustomer?Id=' + data.Id,
-                                     { id: data.Id },
-                                     function (data, status) {
-                                         if (data.msg == 'ok') {
-                                             layer.msg('删除成功!');
-                                         }
-                                         //else {
-                                         //    layer.msg('出现未知错误!');
-                                         //}
-                                     }
-                                 )
-                             });
-                         }
-                     });
+                     //table.on('tool(test)', function (obj) {
+                     //    var data = obj.data;
+                     //    var layEvent = obj.event;
+                     //    var tr = obj.tr;
+                     //    if (layEvent == 'edit') {
+                     //        layer.open({
+                     //            type: 2,
+                     //            title: '编辑客户',
+                     //            content: '/Customer/CustomerEditPage?Id=' + data.Id,
+                     //            area: ['700px', '450px']
+                     //        })
+                     //    }
+                     //    if (layEvent == 'del') {
+                     //        layer.confirm('真的删除行么', function (index) {
+                     //            obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                     //            layer.close(index);
+                     //            //向服务端发送删除指令
+                     //            layui.$.post(
+                     //                '/Customer/DeleteCustomer?Id=' + data.Id,
+                     //                { id: data.Id },
+                     //                function (data, status) {
+                     //                    if (data.msg == 'ok') {
+                     //                        layer.msg('删除成功!');
+                     //                    }
+                     //                    //else {
+                     //                    //    layer.msg('出现未知错误!');
+                     //                    //}
+                     //                }
+                     //            )
+                     //        });
+                     //    }
+                     //});
                  });
              }
              productsearch(curnum, limitcount);
          })
     </script>
-    <script type="text/html" id="titleTpl1">
+    @*<script type="text/html" id="titleTpl1">
         {{fmtDate(d.ApplyTime)}}
     </script>
     <script type="text/html" id="titleTpl2">
@@ -573,6 +525,6 @@
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    </script>
+    </script>*@
 </body>
 </html>
